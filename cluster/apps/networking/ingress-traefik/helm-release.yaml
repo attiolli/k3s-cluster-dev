@@ -5,6 +5,7 @@ metadata:
   name: traefik-test
   namespace: networking
 spec:
+  loadBalancerIP: 10.0.30.251
   interval: 5m
   chart:
     spec:
