@@ -19,16 +19,8 @@ ports.websecure.tls:
   enabled: true
   certResolver: "letsencrypt"
   domains:
-    - main: DUCKDNSDEVURL_VALUE
-      valueFrom:
-        secretKeyRef:
-          name: duckdnsdevurl
-          key: value
-      sans: DUCKDNSSANSURL_VALUE 
-        valueFrom:
-        secretKeyRef:
-          name: duckdnssansurl
-          key: value
+    - main: k3sdev.duckdns.org
+      sans: '*.k3sdev.duckdns.org'
 spec:
   # Request this permanent IP address for traefik with MetalLB.
   loadBalancerIP: 10.0.30.251
