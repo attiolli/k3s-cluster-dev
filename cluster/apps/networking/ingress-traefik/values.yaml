@@ -24,8 +24,8 @@ ports.websecure.tls:
         secretKeyRef:
           name: duckdnsdevurl
           key: value
-      - sans: DUCKDNSSANSURL_VALUE 
-        valueFrom:
+      sans: DUCKDNSSANSURL_VALUE 
+        - valueFrom:
           secretKeyRef:
             name: duckdnssansurl
             key: value
