@@ -7,7 +7,7 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: traefik
+      chart: ingress-traefik
       version: 9.18.2
       sourceRef:
         kind: HelmRepository
