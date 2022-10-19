@@ -26,10 +26,10 @@ ports.websecure.tls:
           key: value
       sans: 
         - DUCKDNSSANSURL_VALUE
-        valueFrom:
-          secretKeyRef:
-            name: duckdnssansurl
-            key: value
+          valueFrom:
+            secretKeyRef:
+              name: duckdnssansurl
+              key: value
 spec:
   # Request this permanent IP address for traefik with MetalLB.
   loadBalancerIP: 10.0.30.251
