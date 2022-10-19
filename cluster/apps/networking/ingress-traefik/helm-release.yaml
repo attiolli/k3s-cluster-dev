@@ -47,7 +47,7 @@ spec:
     globalArguments:
       - "--api.insecure=true"
       - "--serverstransport.insecureskipverify=true"
-        #- "--providers.kubernetesingress.ingressclass=traefik-test"
+      #- "--providers.kubernetesingress.ingressclass=traefik-test"
     additionalArguments:
       - "--certificatesresolvers.letsencrypt.acme.storage=/certs/acme.json"
       - "--certificatesresolvers.letsencrypt.acme.email=your@email.com"
@@ -61,6 +61,17 @@ spec:
           secretKeyRef:
             name: duckdns
             key: token
+    persistence:
+      enabled: true
+      path: /certs
+      size: 128Mi
+    ports.websecure.tls:
+      enabled: true
+      certResolver: "letsencrypt"
+      domains:
+        - main: k3sdev.duckdns.org
+          sans:
+            - "*.k3sdev.duckdns.orgr"
     ports:
       traefik:
         expose: true
