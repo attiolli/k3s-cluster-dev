@@ -5,7 +5,6 @@ metadata:
   name: traefik-test
   namespace: networking
 spec:
-  loadBalancerIP: 10.0.30.251
   interval: 5m
   chart:
     spec:
@@ -26,7 +25,7 @@ spec:
       type: LoadBalancer
       annotations:
         metallb.universe.tf/allow-shared-ip: "traefik"
-        metallb.universe.tf/loadBalancerIPs: "10.0.30.251"
+        metallb.universe.tf/loadBalancerIPs: 10.0.30.251
       externalTrafficPolicy: Local
       #ipFamilyPolicy: PreferDualStack
     logs:
