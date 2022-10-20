@@ -23,9 +23,9 @@ spec:
     service:
       enabled: true
       type: LoadBalancer
-      loadBalancerIP: 10.0.30.251
       spec:
         externalTrafficPolicy: Local
+        loadBalancerIP: 10.0.30.251
     logs:
       general:
         format: json
