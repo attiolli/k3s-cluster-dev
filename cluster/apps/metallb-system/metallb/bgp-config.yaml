@@ -30,4 +30,5 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
+    - traefik
     - ipv4

@@ -22,15 +22,11 @@ spec:
       replicas: 1
     service:
       enabled: true
-      spec:
-        loadBalancerIP: 10.0.30.251
-        type: LoadBalancer
-        externalTrafficPolicy: Local
-        ipFamilyPolicy: SingleStack
-      #annotations:
-      #  metallb.universe.tf/allow-shared-ip: "traefik"
-      #  metallb.universe.tf/loadBalancerIPs: 10.0.30.251
-      #externalTrafficPolicy: Local
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: "traefik"
+        metallb.universe.tf/loadBalancerIPs: 10.0.30.251
+      externalTrafficPolicy: Local
     logs:
       general:
         format: json
