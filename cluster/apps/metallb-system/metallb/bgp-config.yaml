@@ -16,6 +16,16 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  name: traefik
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.0.30.251/32
+  avoidBuggyIPs: true
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
   name: ipv4
   namespace: metallb-system
 spec:
