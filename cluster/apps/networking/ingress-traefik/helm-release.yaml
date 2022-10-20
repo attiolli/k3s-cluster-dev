@@ -27,8 +27,6 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Local
         ipFamilyPolicy: SingleStack
-        ipFamilies:
-        - IPv4
       #annotations:
       #  metallb.universe.tf/allow-shared-ip: "traefik"
       #  metallb.universe.tf/loadBalancerIPs: 10.0.30.251
