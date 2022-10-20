@@ -20,8 +20,9 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 10.0.30.251/32
+    - 10.0.30.251 - 10.0.30.251
   avoidBuggyIPs: true
+  autoAssign: false
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool

@@ -23,9 +23,7 @@ spec:
     service:
       enabled: true
       type: LoadBalancer
-      annotations:
-        metallb.universe.tf/allow-shared-ip: "traefik"
-        metallb.universe.tf/loadBalancerIPs: "10.0.30.251"
+      loadBalancerIP: 10.0.30.251
       externalTrafficPolicy: Local
     logs:
       general:
