@@ -21,14 +21,14 @@ spec:
       kind: Deployment
       replicas: 1
     service:
+      metadata:
+        annotations:
+          metallb.universe.tf/address-pool: traefik
       enabled: true
-      type: LoadBalancer
       spec:
-        loadBalancerIP: 10.0.30.251
+        type: LoadBalancer
         externalTrafficPolicy: Local
-      annotations:
-        metallb.universe.tf/address-pool: traefik
-      ipFamilyPolicy: SingleStack
+        ipFamilyPolicy: SingleStack
     logs:
       general:
         format: json
