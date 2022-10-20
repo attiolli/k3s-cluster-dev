@@ -22,12 +22,12 @@ spec:
       replicas: 1
     service:
       enabled: true
+      type: LoadBalancer
       spec:
-        annotations:
-          metallb.universe.tf/address-pool: traefik
-        type: LoadBalancer
+        loadBalancerIP: 10.0.30.251
         externalTrafficPolicy: Local
-      ipFamilyPolicy: SingleStack
+      annotiations:
+        metallb.universe.tf/address-pool: traefik
     logs:
       general:
         format: json
