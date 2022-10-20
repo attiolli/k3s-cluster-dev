@@ -27,6 +27,7 @@ spec:
         metallb.universe.tf/allow-shared-ip: "traefik"
         metallb.universe.tf/address-pool: traefik
       externalTrafficPolicy: Local
+      ipFamilyPolicy: SingleStack
     logs:
       general:
         format: json
@@ -46,7 +47,7 @@ spec:
     globalArguments:
       - "--api.insecure=true"
       - "--serverstransport.insecureskipverify=true"
-      #- "--providers.kubernetesingress.ingressclass=traefik-test"
+      - "--providers.kubernetesingress.ingressclass=traefik-test"
     additionalArguments:
       - "--certificatesresolvers.letsencrypt.acme.storage=/certs/acme.json"
       - "--certificatesresolvers.letsencrypt.acme.email=your@email.com"
