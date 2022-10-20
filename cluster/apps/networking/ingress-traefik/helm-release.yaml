@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-traefik-dev
+  name: ingress-traefik-dev-env
   namespace: networking
 spec:
   interval: 5m
