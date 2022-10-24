@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - traefik-charts.yaml
   - jetstack-charts.yaml
+  - joshua-charts.yaml
   - metallb.yaml
