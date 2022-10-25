@@ -5,6 +5,6 @@ metadata:
   name: joshua-charts
   namespace: flux-system
 spec:
-  interval: 15m
+  interval: 10m
   url: https://joshuakraitberg.github.io/helm-charts
-  timeout: 10m
+  timeout: 20m
