@@ -15,7 +15,6 @@ spec:
         name: joshua-charts
         namespace: flux-system
   values:
-    groupName: SECRET_DUCKDNS_DOMAIN
     replicaCount: 1
     duckdns:
       token: SECRET_DUCKDNS_TOKEN
