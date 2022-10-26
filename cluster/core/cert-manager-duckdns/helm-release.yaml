@@ -15,12 +15,23 @@ spec:
         name: joshua-charts
         namespace: flux-system
   values:
+    groupName: SECRET_DUCKDNS_DOMAIN
+    replicaCount: 1
     duckdns:
       token: SECRET_DUCKDNS_TOKEN
     clusterIssuer:
+      email: SECRET_DUCKDNS_EMAIL
       production:
         create: true
       staging:
         create: true
-      email: SECRET_DUCKDNS_EMAIL
     logLevel: 2
+    image:
+      repository: joshuakraitberg/cert-manager-webhook-duckdns
+      tag: 1.4.0
+      pullPolicy: IfNotPresent
+    certManager:
+      serviceAccountName: cert-manager
+    service:
+      type: ClusterIP
+      port: 443
