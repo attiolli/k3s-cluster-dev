@@ -25,12 +25,3 @@ spec:
       staging:
         create: true
     logLevel: 2
-    image:
-      repository: joshuakraitberg/cert-manager-webhook-duckdns
-      tag: 1.4.0
-      pullPolicy: IfNotPresent
-    certManager:
-      serviceAccountName: cert-manager
-    service:
-      type: ClusterIP
-      port: 443
