@@ -14,10 +14,10 @@ spec:
     solvers:
     - dns01:
         webhook:
-          #config:
-            #apiTokenSecretRef:
-              #name: "{SECRET_DUCKDNS_TOKEN}"
-              #key: "{SECRET_DUCKDNS_TOKEN}"
+          config:
+            apiTokenSecretRef:
+              name: {SECRET_DUCKDNS_DOMAIN}-tls
+              key: token
           groupName: acme.${SECRET_DUCKDNS_DOMAIN}
           solverName: duckdns
 
