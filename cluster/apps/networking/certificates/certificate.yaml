@@ -5,7 +5,7 @@ metadata:
   name: ${SECRET_DUCKDNS_DOMAIN}
   namespace: networking
 spec:
-  secretName: ${SECRET_DUCKDNS_DOMAIN}-tls
+  secretName: "${SECRET_DUCKDNS_DOMAIN}-tls"
   issuerRef:
     name: cert-manager-webhook-duckdns-production
     kind: ClusterIssuer
