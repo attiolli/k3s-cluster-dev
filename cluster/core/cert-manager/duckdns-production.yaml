@@ -19,5 +19,5 @@ spec:
               name: ${SECRET_DUCKDNS_DOMAIN}-tls
               key: token
           groupName: ${SECRET_DUCKDNS_DOMAIN}
-          solverName: duckdns
+          #solverName: duckdns
 
