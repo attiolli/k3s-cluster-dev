@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - namespace.yaml
+  - duckdns-production.yaml
     #- letsencrypt-production.yaml
     #- letsencrypt-staging.yaml
