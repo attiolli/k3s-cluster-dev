@@ -5,6 +5,8 @@ metadata:
   name: cert-manager-webhook-duckdns
   namespace: cert-manager
 spec:
+  dependsOn:
+    - name: cert-manager
   interval: 10m
   chart:
     spec:
