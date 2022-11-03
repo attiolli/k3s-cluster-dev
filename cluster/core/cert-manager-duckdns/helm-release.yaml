@@ -27,3 +27,4 @@ spec:
       staging:
         create: true
     logLevel: 2
+    groupName: duckdns
