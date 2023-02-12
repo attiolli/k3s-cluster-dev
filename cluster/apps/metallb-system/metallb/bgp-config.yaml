@@ -30,4 +30,4 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-    - ipv4
+  - ipv4
