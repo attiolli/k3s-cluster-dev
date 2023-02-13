@@ -29,5 +29,5 @@ metadata:
   name: bgp-other
   namespace: metallb-system
 spec:
-  AddressPools:
+  IPAddressPools:
   - ipv4
