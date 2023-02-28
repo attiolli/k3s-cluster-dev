@@ -11,7 +11,7 @@ spec:
   peerAddress: 10.0.40.1
   peerPort: 179
   # https://github.com/metallb/metallb/issues/1537
-  ebgpMultiHop: true
+  ebgpMultiHop: false
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
