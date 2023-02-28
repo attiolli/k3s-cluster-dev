@@ -6,7 +6,7 @@ metadata:
   namespace: metallb-system
 spec:
   holdTime: 1m30s
-  myASN: 64512
+  myASN: 64567
   peerASN: 64512
   peerAddress: 10.0.40.1
   peerPort: 179
