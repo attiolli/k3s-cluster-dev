@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: metallb
-      version: 0.13.9
+      version: 0.13.7
       sourceRef:
         kind: HelmRepository
         name: metallb
@@ -27,13 +27,13 @@ spec:
       logLevel: debug
     speaker:
       tolerateMaster: true
-      logLevel: info
+      logLevel: debug
       frr:
         enabled: true
         image:
           repository: docker.io/frrouting/frr
-          #tag: v7.5.1
-          tag: v8.4.0
+          tag: v7.5.1
+          #tag: v8.4.0
     crds:
       enabled: true
   postRenderers:
