@@ -20,7 +20,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 10.0.44.55-10.0.44.59
+    - 10.0.40.55-10.0.40.59
   avoidBuggyIPs: true
 ---
 apiVersion: metallb.io/v1beta1
@@ -32,6 +32,3 @@ spec:
   ipAddressPools:
   - ipv4
   aggregationLength: 32
-  localPref: 100
-  communities:
-  - 65535:65282
