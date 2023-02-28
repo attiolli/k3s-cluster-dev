@@ -73,9 +73,10 @@ spec:
           metallb.universe.tf/loadBalancerIPs: 10.0.40.56
           metallb.universe.tf/address-pool: ipv4
         externalTrafficPolicy: Local
-        ipFamilyPolicy: "SingleStack"
+        ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
           - IPv4
+          - IPv6
       publichService:
         enabled: false
 
@@ -91,6 +92,24 @@ spec:
             matchLabels:
               app.kubernetes.io/instance: ingress-nginx
               app.kubernetes.io/component: controller
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - ingress-nginx
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - ingress-nginx
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - controller
+              topologyKey: "kubernetes.io/hostname"
       resources:
         limits:
           cpu: 2281m
