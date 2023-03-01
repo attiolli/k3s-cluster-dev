@@ -76,8 +76,8 @@ spec:
         ipFamilyPolicy: "SingleStack"
         ipFamilies:
           - IPv4
-      publichService:
-        enabled: false
+      publishService:
+        enabled: true
 
       metrics:
         enabled: true
