@@ -62,7 +62,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: ingress-nginx
         hosts:
           - host: &host "media-lab.oatel.net"
             paths:
