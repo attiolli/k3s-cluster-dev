@@ -46,9 +46,8 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: 10.0.40.57
-          metallb.universe.tf/address-pool: ipv4
-        externalTrafficPolicy: Local
+          metallb.universe.tf/loadBalancerIPs: 10.0.44.111
+        externalTrafficPolicy: Cluster
         ipFamilyPolicy: "SingleStack"
         ipFamilies:
           - IPv4
