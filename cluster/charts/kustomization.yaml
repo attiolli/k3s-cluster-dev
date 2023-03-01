@@ -6,3 +6,4 @@ resources:
   - jetstack-charts.yaml
   - joshua-charts.yaml
   - metallb.yaml
+  - bjw-s.yaml
