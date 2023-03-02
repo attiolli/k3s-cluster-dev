@@ -6,4 +6,4 @@ resources:
   - metallb-system
   - media-browser
   - echo-server
-    #- cert-manager
+  - cert-manager
