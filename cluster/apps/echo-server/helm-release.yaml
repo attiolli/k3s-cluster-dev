@@ -54,6 +54,8 @@ spec:
         enabled: false
     ingress:
       main:
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         enabled: true
         ingressClassName: nginx
         hosts:
