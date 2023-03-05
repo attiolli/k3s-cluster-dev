@@ -59,7 +59,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         hosts:
-          - host: &host "echo.lab.${MAIN_DOMAIN}"
+          - host: &host "echo-lab.${MAIN_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
