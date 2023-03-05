@@ -55,7 +55,7 @@ spec:
     ingress:
       main:
         annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         enabled: true
         ingressClassName: nginx
         hosts:

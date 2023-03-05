@@ -1,0 +1,61 @@
+{
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {
+        "creationTimestamp": "2022-10-20T11:40:29Z",
+        "deletionTimestamp": "2022-10-20T12:13:00Z",
+        "labels": {
+            "kubernetes.io/metadata.name": "networking",
+            "kustomize.toolkit.fluxcd.io/name": "apps",
+            "kustomize.toolkit.fluxcd.io/namespace": "flux-system"
+        },
+        "name": "networking",
+        "resourceVersion": "1067392",
+        "uid": "702d7a15-e725-4cc9-97e9-9f0b1cf82c56"
+    },
+    "spec": {
+        "finalizers": [
+            "kubernetes"
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2022-10-20T12:13:08Z",
+                "message": "All resources successfully discovered",
+                "reason": "ResourcesDiscovered",
+                "status": "False",
+                "type": "NamespaceDeletionDiscoveryFailure"
+            },
+            {
+                "lastTransitionTime": "2022-10-20T12:13:08Z",
+                "message": "All legacy kube types successfully parsed",
+                "reason": "ParsedGroupVersions",
+                "status": "False",
+                "type": "NamespaceDeletionGroupVersionParsingFailure"
+            },
+            {
+                "lastTransitionTime": "2022-10-20T12:13:08Z",
+                "message": "All content successfully deleted, may be waiting on finalization",
+                "reason": "ContentDeleted",
+                "status": "False",
+                "type": "NamespaceDeletionContentFailure"
+            },
+            {
+                "lastTransitionTime": "2022-10-20T12:13:08Z",
+                "message": "Some resources are remaining: helmreleases.helm.toolkit.fluxcd.io has 1 resource instances",
+                "reason": "SomeResourcesRemain",
+                "status": "True",
+                "type": "NamespaceContentRemaining"
+            },
+            {
+                "lastTransitionTime": "2022-10-20T12:13:08Z",
+                "message": "Some content in the namespace has finalizers remaining: finalizers.fluxcd.io in 1 resource instances",
+                "reason": "SomeFinalizersRemain",
+                "status": "True",
+                "type": "NamespaceFinalizersRemaining"
+            }
+        ],
+        "phase": "Terminating"
+    }
+}
