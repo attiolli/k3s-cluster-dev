@@ -20,7 +20,7 @@ spec:
               key: cloudflare-token
         selector:
           dnsZones:
-            - "${MAIN_DOMAIN}"
+            - "${LAB_DOMAIN}"
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/clusterissuer_v1.json
 apiVersion: cert-manager.io/v1
@@ -43,4 +43,4 @@ spec:
               key: cloudflare-token
         selector:
           dnsZones:
-            - "${MAIN_DOMAIN}"
+            - "${LAB_DOMAIN}"

@@ -2,17 +2,17 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: oatel.net
+  name: lab.oatel.net
   namespace: networking
 spec:
-  secretName: oatel.net-tls
+  secretName: lab.oatel.net-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
     size: 384
-  commonName: "oatel.net"
+  commonName: "lab.oatel.net"
   dnsNames:
-  - "oatel.net"
-  - "*.oatel.net"
+  - "lab.oatel.net"
+  - "*.lab.oatel.net"
