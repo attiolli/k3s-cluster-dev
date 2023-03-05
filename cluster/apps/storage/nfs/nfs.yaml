@@ -23,13 +23,6 @@ spec:
     nfs:
       server: "10.0.40.12"
       path: "/srv/k8slab"
-    mountOptions:
-    - nfsvers=4
-    - tcp
-    - intr
-    - hard
-    - noatime
-    - nodiratime
     storageClass:
       defaultClass: true
       archiveOnDelete: true
