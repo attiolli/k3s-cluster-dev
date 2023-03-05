@@ -7,3 +7,4 @@ resources:
   - joshua-charts.yaml
   - metallb.yaml
   - bjw-s.yaml
+  - nfs-subdir-external-provisioner-charts.yaml
