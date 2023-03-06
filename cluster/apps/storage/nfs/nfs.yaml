@@ -24,5 +24,6 @@ spec:
       server: "10.0.40.12"
       path: "/srv/k8slab"
     storageClass:
-      defaultClass: true
+      name: nfs-client
+      defaultClass: false
       archiveOnDelete: true

@@ -8,3 +8,4 @@ resources:
   - media-browser
   - echo-server
   - cert-manager
+  - home
