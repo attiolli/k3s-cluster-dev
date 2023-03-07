@@ -38,34 +38,19 @@ spec:
 
     service:
       main:
-        type: LoadBalancer
-        externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/loadBalancerIPs: "${SVC_HA_ADDR}"
         ports:
           http:
             port: 8123
             protocol: TCP
-            targetPort: 8123
-          #mdns-tcp:
-            #enabled: true
-            #port: 5353
-            #protocol: TCP
-            #targetPort: 5353
-          #mdns-udp:
-            #enabled: true
-            #port: 5353
-            #protocol: UDP
-            #targetPort: 5353
 
     ingress:
       main:
         enabled: true
         ingressClassName: nginx
-        #annotations:
-          #nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         hosts:
-          - host: &host hass-lab.oatel.net
+          - host: &host "hass-lab.${MAIN_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
