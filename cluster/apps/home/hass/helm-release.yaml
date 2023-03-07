@@ -39,8 +39,9 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${SVC_HA_ADDR}"
         externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${SVC_HA_ADDR}"
         ports:
           http:
             port: 8123
