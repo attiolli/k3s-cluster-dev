@@ -61,6 +61,14 @@ spec:
             connection_messages true
             autosave_interval 60
             #password_file /data/mosquitto/mosquitto_pwd
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
     persistence:
       data:
         enabled: true
