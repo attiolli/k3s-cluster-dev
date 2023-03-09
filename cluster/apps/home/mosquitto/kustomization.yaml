@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - helm-release.yaml
+configMapGenerator:
+  - name: mosquitto-configmap
+    files:
+      - mosquitto.conf=./config/mosquitto.conf
