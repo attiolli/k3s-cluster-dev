@@ -17,7 +17,7 @@ spec:
       interval: 5m
   maxHistory: 3
   install:
-    createNamespace: true
+    createNamespace: false
     remediation:
       retries: 3
   upgrade:
@@ -41,26 +41,28 @@ spec:
           metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR}"
         externalTrafficPolicy: Local
         ipFamilyPolicy: "SingleStack"
+        ipFamilies:
+          - IPv4
         ports:
           http:
             enabled: false
           mqtt:
             enabled: true
             port: 1883
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
-
+    configMaps:
+      config:
+        enabled: true
+        data:
+          mosquitto.conf: |
+            per_listener_settings false
+            listener 1883 0.0.0.0
+            allow_anonymous true
+            persistence true
+            persistence_location /data/mosquitto/
+            autosave_interval 1800
+            connection_messages true
+            autosave_interval 60
+            #password_file /data/mosquitto/mosquitto_pwd
     persistence:
       data:
         enabled: true
