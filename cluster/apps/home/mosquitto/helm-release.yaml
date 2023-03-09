@@ -49,7 +49,7 @@ spec:
             port: 1883
     configMaps:
       config:
-        enabled: true
+        enabled: false
         data:
           mosquitto.conf: |
             per_listener_settings false
@@ -67,7 +67,7 @@ spec:
         mountPath: /data
         existingClaim: mosquitto-lab-config-v1
       config:
-        enabled: true
+        enabled: false
         type: configMap
         name: mosquitto-config
         mountPath: /mosquitto/config/mosquitto.conf
