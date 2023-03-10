@@ -62,6 +62,11 @@ spec:
         mountPath: /mosquitto/config/mosquitto.conf
         subPath: mosquitto.conf
 
+    tolerations:
+      - key: "master"
+        operator: "Exists"
+        effect: "NoSchedule"
+
     resources:
       requests:
         memory: 64M
