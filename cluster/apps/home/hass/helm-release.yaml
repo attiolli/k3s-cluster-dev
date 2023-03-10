@@ -69,6 +69,11 @@ spec:
       config:
         enabled: true
         existingClaim: hass-lab-config-v1
+    tolerations:
+      - key: "master"
+        operator: "Equal"
+        value: "false"
+        effect: "NoSchedule"
 
     resources:
       requests:

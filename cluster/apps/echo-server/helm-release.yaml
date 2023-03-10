@@ -66,6 +66,11 @@ spec:
         tls:
           - hosts:
               - *host
+    tolerations:
+      - key: "master"
+        operator: "Equal"
+        value: "false"
+        effect: "NoSchedule"
     resources:
       requests:
         cpu: 5m

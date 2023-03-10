@@ -55,6 +55,11 @@ spec:
         enabled: true
         existingClaim: nodered-lab-config-v1
         mountPath: "/data"
+    tolerations:
+      - key: "master"
+        operator: "Equal"
+        value: "false"
+        effect: "NoSchedule"
     resources:
       requests:
         memory: 64M
