@@ -64,7 +64,8 @@ spec:
 
     tolerations:
       - key: "master"
-        operator: "Exists"
+        operator: "Equal"
+        value: "false"
         effect: "NoSchedule"
 
     resources:
