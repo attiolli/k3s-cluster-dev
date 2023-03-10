@@ -62,7 +62,6 @@ spec:
             autosave_interval 1800
             connection_messages true
             autosave_interval 60
-            #password_file /data/mosquitto/mosquitto_pwd
     persistence:
       data:
         enabled: true
