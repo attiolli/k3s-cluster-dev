@@ -6,3 +6,5 @@ resources:
   - node-red
   - hass
   - mosquitto
+  #- zigbee2mqtt
+  #- esphome
