@@ -32,9 +32,12 @@ spec:
       main:
         type: LoadBalancer
         externalTrafficPolicy: Local
-        loadBalancerIP: "${MLB_UNIFI_ADDR}"
         annotations:
+          metallb.universe.tf/loadBalancerIPs: "${MLB_UNIFI_ADDR}"
           metallb.universe.tf/allow-shared-ip: unifi-lab
+        ipFamilyPolicy: "SingleStack"
+        ipFamilies:
+          - IPv4
         ports:
           http:
             port: 8443
