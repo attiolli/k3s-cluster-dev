@@ -34,11 +34,9 @@ spec:
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${MLB_UNIFI_ADDR}"
           metallb.universe.tf/allow-shared-ip: unifi-lab
-        ipFamilyPolicy: "SingleStack"
-        ipFamilies:
-          - IPv4
         ports:
           http:
+            enabled: true
             port: 8443
             protocol: HTTPS
           controller:
