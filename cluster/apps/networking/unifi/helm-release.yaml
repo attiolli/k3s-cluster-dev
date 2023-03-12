@@ -34,7 +34,7 @@ spec:
         externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${MLB_UNIFI_ADDR}"
-          metallb.universe.tf/allow-shared-ip: unifi-lab
+          #metallb.universe.tf/allow-shared-ip: unifi-lab
         ports:
           http:
             enabled: true
