@@ -37,6 +37,12 @@ spec:
       MODBUS_MQTT_PUBLISH_INTERVAL: 1
       MODBUS_HA_EXPIRE_AFTER: 30
 
+    service:
+      main:
+        ports:
+          http:
+            port: 8080 # dummy port here
+
     persistence:
       config:
         enabled: true
