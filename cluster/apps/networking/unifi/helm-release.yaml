@@ -29,33 +29,33 @@ spec:
 
     service:
       main:
-        #enabled: true
-        #type: LoadBalancer
-        #externalTrafficPolicy: Local
-        #annotations:
-        #  metallb.universe.tf/loadBalancerIPs: "${MLB_UNIFI_ADDR}"
-        #  metallb.universe.tf/allow-shared-ip: unifi-lab
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${MLB_UNIFI_ADDR}"
+          metallb.universe.tf/allow-shared-ip: unifi-lab
         ports:
           http:
             port: 8443
             enabled: true
             protocol: HTTPS
-        #  controller:
-        #    enabled: true
-        #    port: 8080
-        #    protocol: TCP
-        #  stun:
-        #    enabled: true
-        #    port: 3478
-        #    protocol: UDP
-        #  syslog:
-        #    enabled: true
-        #    port: 5514
-        #    protocol: UDP
-        #  discovery:
-        #    enabled: true
-        #    port: 10001
-        #    protocol: UDP
+          controller:
+            enabled: true
+            port: 8080
+            protocol: TCP
+          stun:
+            enabled: true
+            port: 3478
+            protocol: UDP
+          syslog:
+            enabled: true
+            port: 5514
+            protocol: UDP
+          discovery:
+            enabled: true
+            port: 10001
+            protocol: UDP
 
     ingress:
       main:
