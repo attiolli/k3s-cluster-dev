@@ -44,10 +44,16 @@ spec:
             port: 8080 # dummy port here
 
     persistence:
+      data:
+        enabled: true
+        mountPath: /data
+        existingClaim: modbus2x-lab-config-v1
       config:
         enabled: true
-        existingClaim: modbus2x-lab-config-v1
-        mountPath: "/app"
+        type: configMap
+        name: modbus2x-config
+        mountPath: /app/config.yml
+        subPath: config.yml
 
     tolerations:
       - key: "master"
