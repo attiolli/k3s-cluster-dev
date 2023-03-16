@@ -31,7 +31,7 @@ spec:
       tag: 75d196e
     env:
       TZ: "${TZ}"
-      MODBUS_DEBUG=yes
+      MODBUS_DEBUG: yes
       MODBUS_MQTT_BROKER: mosquitto-lab
       #MODBUS_MQTT_USERNAME:
       #MODBUS_MQTT_PASSWORD:
