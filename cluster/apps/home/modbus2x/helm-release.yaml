@@ -43,6 +43,14 @@ spec:
           http:
             port: 8080 # dummy port here
 
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
     persistence:
       data:
         enabled: true
