@@ -7,5 +7,5 @@ resources:
   - hass
   - mosquitto
   - esphome
-  #- modbus2x
+  - modbus2x
   #- zigbee2mqtt
