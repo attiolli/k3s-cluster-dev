@@ -23,8 +23,8 @@ spec:
   dependsOn:
     - name: mosquitto-lab
       namespace: home
-    - name: csi-driver-nfs
-      namespace: storage
+    #- name: csi-driver-nfs
+    #  namespace: storage
   values:
     image:
       repository: vaizki/modbus2x
@@ -53,10 +53,10 @@ spec:
         enabled: false
 
     persistence:
-      data:
-        enabled: true
-        mountPath: /data
-        existingClaim: modbus2x-lab-config-v1
+      #data:
+      #  enabled: true
+      #  mountPath: /data
+      #  existingClaim: modbus2x-lab-config-v1
       config:
         enabled: true
         type: configMap
