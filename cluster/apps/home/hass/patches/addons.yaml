@@ -37,7 +37,6 @@ spec:
             - hosts:
                 - *host
 
-        persistence:
-          config:
-            enabled: true
-            existingClaim: hass-lab-config-v1
+        volumeMounts:
+        - name: config
+          mountPath: /config
