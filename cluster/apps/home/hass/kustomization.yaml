@@ -6,3 +6,7 @@ resources:
   - helm-release.yaml
 patchesStrategicMerge:
   - ./patches/addons.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: hass
+      app.kubernetes.io/instance: hass
