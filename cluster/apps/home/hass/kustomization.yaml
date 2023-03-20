@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - helm-release.yaml
-patchesStrategicMerge:
-  - ./patches/addons.yaml
+#patchesStrategicMerge:
+#  - ./patches/addons.yaml
