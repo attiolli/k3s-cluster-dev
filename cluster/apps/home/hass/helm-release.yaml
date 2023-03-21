@@ -32,6 +32,8 @@ spec:
   values:
     global:
       fullnameOverride: hass
+    controller:
+      type: statefulset
     image:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2022.9.1
