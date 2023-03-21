@@ -41,7 +41,6 @@ spec:
         ports:
           http:
             port: 8123
-            protocol: TCP
 
     ingress:
       main:
