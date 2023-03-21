@@ -26,8 +26,6 @@ spec:
         ingress:
           enabled: true
           ingressClassName: nginx
-          annotations:
-            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           hosts:
             - host: &host "hlab-code.${MAIN_DOMAIN}"
               paths:
@@ -38,10 +36,5 @@ spec:
                 - *host
 
         volumeMounts:
-          - name: config
-            mountPath: /config
-
-    volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: hass-lab-config-v1
+        - name: config
+          mountPath: /config
