@@ -32,8 +32,6 @@ spec:
   values:
     global:
       fullnameOverride: hass
-    controller:
-      type: statefulset
     image:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2022.9.1
@@ -70,14 +68,9 @@ spec:
       config:
         enabled: true
         existingClaim: hass-lab-config-v1
+
     tolerations:
       - key: "master"
         operator: "Equal"
         value: "false"
         effect: "NoSchedule"
-
-    #resources:
-    #requests:
-    #    memory: 411M
-    #  limits:
-    #    memory: 712M
