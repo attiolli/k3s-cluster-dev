@@ -74,3 +74,35 @@ spec:
         operator: "Equal"
         value: "false"
         effect: "NoSchedule"
+
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          repository: ghcr.io/coder/code-server
+          tag: 4.11.0
+        env:
+          TZ: Europe/Helsinki
+        workingDir: /config
+        args:
+          - --auth
+          - "none"
+          - --user-data-dir
+          - "/config/.vscode"
+          - --extensions-dir
+          - "/config/.vscode"
+        ingress:
+          enabled: true
+          ingressClassName: "nginx"
+          hosts:
+            - host: &code-host "hlab-code.${MAIN_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *code-host
+
+        volumeMounts:
+          - name: config
+            mountPath: /config
