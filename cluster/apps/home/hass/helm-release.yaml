@@ -75,8 +75,8 @@ spec:
         value: "false"
         effect: "NoSchedule"
 
-    resources:
-      requests:
-        memory: 411M
-      limits:
-        memory: 712M
+    #resources:
+    #requests:
+    #    memory: 411M
+    #  limits:
+    #    memory: 712M
