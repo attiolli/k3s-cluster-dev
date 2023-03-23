@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: cluster-secrets
+    namespace: flux-system
+stringData:
+    SECRET_EMAIL: attiolli@gmail.com
+    SECRET_GRAFANA_PASSWORD: Tikka123
+    MAIN_DOMAIN: oatel.net
+    SVC_HA_ADDR: 10.0.44.112
+    SVC_MQTT_ADDR: 10.0.44.113
+    MLB_UNIFI_ADDR: 10.0.44.114
+    TELEGRAM_MY_CHATID: 59436712

@@ -31,8 +31,17 @@ spec:
     cleanupOnFail: true
   values:
     env:
-      TELEGRAM_CHAT_ID: "${TELEGRAM_MY_CHATID}"
-      TELEGRAM_TOKEN: "${TELEGRAM_TOKEN}"
+      - name: TELEGRAM_CHAT_ID
+        valueFrom:
+          secretKeyRef:
+            name: telegram-alert-bot-secret
+            key: telegramChatId
+      - name: TELEGRAM_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: telegram-alert-bot-secret
+            key: telegramToken
+        
     global:
       nameOverride: *app
     image:
