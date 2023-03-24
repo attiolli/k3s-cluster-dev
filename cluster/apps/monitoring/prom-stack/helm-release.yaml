@@ -111,7 +111,7 @@ spec:
           - name: "null"
           - name: "telegram"
             webhook_configs:
-              - url: "http://alertmanager-telegram:8080/alerts"
+              - url: http://alertmanager-telegram:8080/alerts
                 send_resolved: true
         route:
           group_by: [ "alertname", "job" ]
@@ -125,11 +125,11 @@ spec:
                 - alertname =~ "InfoInhibitor|Watchdog"
             - receiver: "telegram"
               matchers:
-                - severity = "warning"
+                - severity = "critical"
               continue: true
         inhibit_rules:
           - source_matchers:
-              - severity = "warning"
+              - severity = "critical"
             target_matchers:
               - severity = "warning"
         ingress:
