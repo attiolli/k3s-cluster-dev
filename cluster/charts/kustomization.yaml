@@ -8,3 +8,4 @@ resources:
   - joshua-charts.yaml
   - metallb.yaml
   - bjw-s.yaml
+  - grafana-charts.yaml
