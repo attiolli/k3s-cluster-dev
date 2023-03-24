@@ -5,4 +5,4 @@ resources:
   - secret.sops.yaml
   - alert-manager
   - grafana
-  #- prom-stack
+  - prom-stack
