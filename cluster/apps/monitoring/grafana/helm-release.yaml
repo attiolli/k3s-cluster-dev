@@ -112,7 +112,7 @@ spec:
       - grafana-clock-panel
       - alexanderzobnin-zabbix-app
     serviceMonitor:
-      enabled: true
+      enabled: false
     ingress:
       enabled: true
       ingressClassName: "nginx"
