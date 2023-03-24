@@ -10,3 +10,4 @@ resources:
   - cert-manager
   - home
   - monitoring
+  - media
