@@ -112,7 +112,7 @@ spec:
       - grafana-clock-panel
       - alexanderzobnin-zabbix-app
     serviceMonitor:
-      enabled: false
+      enabled: true
     ingress:
       enabled: true
       ingressClassName: "nginx"
@@ -122,7 +122,7 @@ spec:
         - hosts:
             - "grafana-lab.${MAIN_DOMAIN}"
     serviceAccount:
-      create: false
+      create: true
       autoMount: true
     persistence:
       enabled: false
