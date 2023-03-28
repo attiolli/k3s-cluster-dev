@@ -35,6 +35,9 @@ spec:
       main:
         annotations:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/auth-type: basic
+          nginx.ingress.kubernetes.io/auth-secret: home-http-secret
+          nginx.ingress.kubernetes.io/auth-realm: "Autentikointi vaaditaan"
         enabled: true
         ingressClassName: nginx
         hosts:
