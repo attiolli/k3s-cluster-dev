@@ -5,7 +5,7 @@ metadata:
   name: multus
   namespace: system
 spec:
-  interval: 30m
+  interval: 5m
   chart:
     spec:
       chart: multus
@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: angelnu
         namespace: flux-system
-      interval: 30m
+      interval: 5m
   values:
     image:
       repository: ghcr.io/k8snetworkplumbingwg/multus-cni
