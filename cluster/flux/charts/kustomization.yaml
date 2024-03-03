@@ -10,3 +10,6 @@ resources:
   - bjw-s.yaml
   - prometheus-community-charts.yaml
   - grafana-charts.yaml
+  - angelnu-charts.yaml
+  - kubernetes-sigs-descheduler-charts.yaml
+  - stakater.yaml
