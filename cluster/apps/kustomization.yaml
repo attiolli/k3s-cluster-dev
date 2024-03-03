@@ -4,10 +4,4 @@ kind: Kustomization
 resources:
   - networking
   - cert-manager
-  #- storage
-  #- metallb-system
-  #- media-browser
-  #- echo-server
-  #- home
-  #- monitoring
-  #- media
+  - system
