@@ -5,4 +5,4 @@ resources:
   - networking
   - cert-manager
   - system
-  #- storage
+  - storage
