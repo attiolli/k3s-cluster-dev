@@ -1,4 +1,15 @@
 ---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: bgp-other
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - ipv4
+  peers:
+    - vmnet-router-v4
+---
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
@@ -10,8 +21,6 @@ spec:
   peerASN: 64512
   peerAddress: 10.0.40.1
   peerPort: 179
-  # https://github.com/metallb/metallb/issues/1537
-  ebgpMultiHop: false
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -21,14 +30,3 @@ metadata:
 spec:
   addresses:
     - 10.0.44.0/24
-  avoidBuggyIPs: true
----
-apiVersion: metallb.io/v1beta1
-kind: BGPAdvertisement
-metadata:
-  name: bgp-other
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-  - ipv4
-  aggregationLength: 32
