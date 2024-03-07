@@ -8,3 +8,4 @@ resources:
   - storage
   - media
   - system-upgrade
+  - home
