@@ -26,9 +26,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: csi-driver-nfs2
-      namespace: storage
   values:
     controllers:
       main:
