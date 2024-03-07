@@ -61,8 +61,8 @@ spec:
             probes: *probes
 
         pod:
-          annotations:
-            k8s.v1.cni.cncf.io/networks: hass-static
+          #annotations:
+          #  k8s.v1.cni.cncf.io/networks: hass-static
           tolerations:
             - key: "master"
               operator: "Equal"
