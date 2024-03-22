@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "github>attiolli/k3s-cluster-dev//.github/renovate/commit-message.json",
+    "github>attiolli/k3s-cluster-dev//.github/renovate/pr-labels.json"
+  ],
+  "schedule": [
+    "after 4pm every weekday",
+    "before 6am every weekday",
+    "after 11pm every weekend",
+    "before 6am every weekend"
+  ],
+  "timezone": "Europe/Helsinki",
+  "prHourlyLimit": 5,
+  "flux": {
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
+  },
+  "helm-values": {
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
+  },
+  "kubernetes": {
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
+  }
+}
