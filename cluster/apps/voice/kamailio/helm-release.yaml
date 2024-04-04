@@ -67,7 +67,6 @@ spec:
         enabled: true
         existingClaim: kam-config
 
-    persistence:
       config-file:
         enabled: true
         type: configMap
@@ -75,4 +74,3 @@ spec:
         globalMounts:
           - path: /etc/kamailio/kamailio.cfg
             subPath: kamailio.cfg
-
