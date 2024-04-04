@@ -4,7 +4,7 @@ metadata:
   name: kam-app-conf
   namespace: voice
 data:
-  kamailio.conf: |
+  kamailio.cfg: |
     #!KAMAILIO
     #
     # Kamailio SIP Server v5.8 - default configuration script
