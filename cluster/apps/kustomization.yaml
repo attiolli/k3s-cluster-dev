@@ -9,4 +9,4 @@ resources:
   - media
   - system-upgrade
   - home
-  #- voice
+  - voice
