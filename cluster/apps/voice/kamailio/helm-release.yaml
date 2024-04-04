@@ -71,7 +71,7 @@ spec:
       config-file:
         enabled: true
         type: configMap
-        name: kam-config
+        name: kam-app-conf
         globalMounts:
           - path: /etc/kamailio/kamailio.cfg
             subPath: kamailio.cfg

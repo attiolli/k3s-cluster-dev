@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kam-config
+  name: kam-app-conf
   namespace: voice
 data:
   kamailio.conf: |
