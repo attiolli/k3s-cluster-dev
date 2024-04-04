@@ -67,12 +67,12 @@ spec:
         enabled: true
         existingClaim: kam-config
 
-    #persistence:
-    #  config-file:
-    #    enabled: true
-    #    type: configMap
-    #    name: kam-configmap
-    #    globalMounts:
-    #      - path: /etc/kamailio
-    #        subPath: kamailio.cfg
+    persistence:
+      config-file:
+        enabled: true
+        type: configMap
+        name: kam-config
+        globalMounts:
+          - path: /etc/kamailio/kamailio.cfg
+            subPath: kamailio.cfg
 
