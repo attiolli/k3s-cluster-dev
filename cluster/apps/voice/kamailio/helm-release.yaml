@@ -68,5 +68,5 @@ spec:
         type: configMap
         name: kam-app-conf
         globalMounts:
-          - path: /etc/kamailio
+          - path: /etc/kamailio/kamailio.cfg
             subPath: kamailio.cfg
