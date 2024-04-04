@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kam-app-conf
-  namespace: voice
+  name: mosquitto-config
+  namespace: home
 data:
-  kamailio.cfg: |
+  kamailio.conf: |
     #!KAMAILIO
     #
     # Kamailio SIP Server v5.8 - default configuration script
@@ -132,7 +132,7 @@ data:
       ALTER TABLE missed_calls ADD COLUMN dst_user VARCHAR(64) NOT NULL DEFAULT '';
       ALTER TABLE missed_calls ADD COLUMN dst_domain VARCHAR(128) NOT NULL DEFAULT '';
     #!endif
-
+    
     ####### Include Local Config If Exists #########
     import_file "kamailio-local.cfg"
     
@@ -203,7 +203,7 @@ data:
     # auto_aliases=no
     
     /* add local domain aliases - it can be set many times */
-    alias="kam.oatel.net"
+    # alias="sip.mydomain.com"
     
     /* listen sockets - if none set, Kamailio binds to all local IP addresses
      * - basic prototype (full prototype can be found in Wiki - Core Cookbook):
@@ -268,9 +268,6 @@ data:
     #!endif
     
     ####### Modules Section ########
-    # Custom moduleloads
-    loadmodule "dbtext.so"
-    loadmodule "auth.so"
     
     /* set paths to location of modules */
     # mpath="/usr/lib/kamailio/modules/"
@@ -356,8 +353,8 @@ data:
     #!endif
     
     # ----------------- setting module-specific parameters ---------------
-
-
+    
+    
     # ----- jsonrpcs params -----
     modparam("jsonrpcs", "pretty_format", 1)
     /* set the path to RPC fifo control file */
@@ -434,21 +431,11 @@ data:
     modparam("usrloc", "timer_interval", 60)
     modparam("usrloc", "timer_procs", 1)
     modparam("usrloc", "use_domain", MULTIDOMAIN)
-    modparam("usrloc", "db_mode", 2)
-    modparam("usrloc", "db_url", "text:///etc/kamailio/secret/location")
     /* enable DB persistency for location entries */
     #!ifdef WITH_USRLOCDB
     modparam("usrloc", "db_url", DBURL)
     modparam("usrloc", "db_mode", 2)
     #!endif
-
-    # -- auth params --
-    modparam("auth_db", "db_url", "text:///etc/kamailio/secret/users")
-    modparam("auth_db", "calculate_ha1", 1)
-    modparam("auth_db", "password_column", "password")
-    modparam("auth_db", "user_column", "username")
-    modparam("auth_db", "domain_column", "domain")
-
     
     # ----- auth_db params -----
     #!ifdef WITH_AUTH
@@ -829,6 +816,14 @@ data:
     
     # IP authorization and user authentication
     route[AUTH] {
+    #!ifdef WITH_AUTH
+    
+    #!ifdef WITH_IPAUTH
+            if((!is_method("REGISTER")) && allow_source_address()) {
+                    # source IP allowed
+                    return;
+            }
+    #!endif
     
             if (is_method("REGISTER") || from_uri==myself) {
                     # authenticate requests
@@ -843,17 +838,19 @@ data:
             # if caller is not local subscriber, then check if it calls
             # a local destination, otherwise deny, not an open relay here
             if (from_uri!=myself && uri!=myself) {
-                    sl_send_reply("403", "K Not relaying");
+                    sl_send_reply("403", "Not relaying");
                     exit;
             }
     
+    #!else
     
             # authentication not enabled - do not relay at all to foreign networks
             if(uri!=myself) {
-                    sl_send_reply("403", "K Not relaying");
+                    sl_send_reply("403", "Not relaying");
                     exit;
             }
     
+    #!endif
             return;
     }
     

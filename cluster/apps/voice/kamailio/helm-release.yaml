@@ -70,9 +70,3 @@ spec:
         globalMounts:
           - path: /etc/kamailio/kamailio.cfg
             subPath: kamailio.cfg
-      kamailio-secret:
-        enabled: true
-        type: secret
-        name: kamailio-secret
-        globalMounts:
-          - path: /etc/kamailio/secret
