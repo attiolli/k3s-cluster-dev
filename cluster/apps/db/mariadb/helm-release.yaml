@@ -33,3 +33,5 @@ spec:
         existingClaim: mariadb
     metrics:
       enabled: true
+      serviceMonitor:
+        enabled: true
