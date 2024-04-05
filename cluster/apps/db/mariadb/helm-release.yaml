@@ -37,3 +37,6 @@ spec:
       persistence:
         enabled: true
         existingClaim: mariadb
+    initdbScripts:
+      allow.sql: |
+        GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}' WITH GRANT OPTION;
