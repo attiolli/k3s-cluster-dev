@@ -54,9 +54,14 @@ data:
     #     - define WITH_IPAUTH
     #     - add IP addresses with group id '1' to 'address' table
     #
+
+
     # *** To enable persistent user location execute:
     #     - enable mysql
-    #     - define WITH_USRLOCDB
+    #!define WITH_USRLOCDB
+
+
+
     #
     # *** To enable presence server execute:
     #     - enable mysql
