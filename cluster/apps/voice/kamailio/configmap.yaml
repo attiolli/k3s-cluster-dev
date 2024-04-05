@@ -89,7 +89,7 @@ data:
      * - basic prototype (full prototype can be found in Wiki - Core Cookbook):
      *      listen=[proto]:[localip]:[lport] advertise [publicip]:[pport]
      * - it can be set many times to add more sockets to listen to */
-    listen=udp:eth0:5060 advertise 10.0.44.115:5060
+    #listen=eth0:5060 advertise 10.0.44.115:5060
     
     /* life time of TCP connection when there is no traffic
      * - a bit higher than registration expires to cope with UA behind NAT */
