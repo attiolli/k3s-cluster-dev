@@ -31,8 +31,8 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/kamailio/kamailio-ci
-              tag: master
+              repository: ghcr.io/kamailio/kamailio
+              tag: 5.8.0-xenial
         pod:
           tolerations:
             - key: "master"
