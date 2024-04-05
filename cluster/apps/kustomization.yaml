@@ -9,4 +9,5 @@ resources:
   - media
   - system-upgrade
   - home
+  - db
   - voice
