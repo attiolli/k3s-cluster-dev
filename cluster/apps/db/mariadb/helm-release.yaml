@@ -5,7 +5,7 @@ metadata:
   name: mariadb
   namespace: db
 spec:
-  interval: 10m
+  interval: 15m
   chart:
     spec:
       chart: mariadb
@@ -39,6 +39,5 @@ spec:
         existingClaim: mariadb
     initdbScripts:
       allow.sql: |
-        GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}' WITH GRANT OPTION;
         GRANT ALL PRIVILEGES ON *.* TO 'kamailio'@'%' IDENTIFIED BY '${MARIADB_KAMAILIO_PASSWORD}' WITH GRANT OPTION;
         FLUSH PRIVILEGES;
