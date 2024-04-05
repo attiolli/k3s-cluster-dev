@@ -35,14 +35,14 @@ data:
     #
 
     # *** To enable mysql:
-    ##!define WITH_MYSQL
+    #!define WITH_MYSQL
 
 
 
     #
     # *** To enable authentication execute:
     #     - enable mysql
-    ##!define WITH_AUTH
+    #!define WITH_AUTH
 
 
 
@@ -58,7 +58,7 @@ data:
 
     # *** To enable persistent user location execute:
     #     - enable mysql
-    ##!define WITH_USRLOCDB
+    #!define WITH_USRLOCDB
 
 
 
