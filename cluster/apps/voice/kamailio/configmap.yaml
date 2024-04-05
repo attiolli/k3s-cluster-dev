@@ -29,7 +29,7 @@ data:
     # Several features can be enabled using '#!define WITH_FEATURE' directives:
     #
     # *** To run in debug mode:
-    #     - define WITH_DEBUG
+    #!define WITH_DEBUG
     #     - debug level increased to 3, logs still sent to syslog
     #     - debugger module loaded with cfgtrace enabled
     #
@@ -215,7 +215,7 @@ data:
     # auto_aliases=no
     
     /* add local domain aliases - it can be set many times */
-    # alias="sip.mydomain.com"
+    alias="kam.oatel.net"
     
     /* listen sockets - if none set, Kamailio binds to all local IP addresses
      * - basic prototype (full prototype can be found in Wiki - Core Cookbook):
