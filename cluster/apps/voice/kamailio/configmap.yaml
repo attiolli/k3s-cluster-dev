@@ -35,14 +35,14 @@ data:
     #
 
     # *** To enable mysql:
-    #!define WITH_MYSQL
+    ##!define WITH_MYSQL
 
 
 
     #
     # *** To enable authentication execute:
     #     - enable mysql
-    #!define WITH_AUTH
+    ##!define WITH_AUTH
 
 
 
@@ -58,7 +58,7 @@ data:
 
     # *** To enable persistent user location execute:
     #     - enable mysql
-    #!define WITH_USRLOCDB
+    ##!define WITH_USRLOCDB
 
 
 
@@ -160,7 +160,7 @@ data:
     #!ifdef WITH_MYSQL
     # - database URL - used to connect to database server by modules such
     #       as: auth_db, acc, usrloc, a.s.o.
-    #!trydef DBURL "mysql://kamailio:kamailiorw@mariadb.db.svc.cluster.local/kamailio"
+    #!define DBURL "mysql://kamailio:kamailiorw@mariadb.db.svc.cluster.local/kamailio"
     #!endif
     
     #!ifdef WITH_MULTIDOMAIN
