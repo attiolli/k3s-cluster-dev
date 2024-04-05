@@ -33,12 +33,19 @@ data:
     #     - debug level increased to 3, logs still sent to syslog
     #     - debugger module loaded with cfgtrace enabled
     #
+
     # *** To enable mysql:
-    #     - define WITH_MYSQL
+    #!define WITH_MYSQL
+
+
+
     #
     # *** To enable authentication execute:
     #     - enable mysql
-    #     - define WITH_AUTH
+    #!define WITH_AUTH
+
+
+
     #     - add users using 'kamctl' or 'kamcli'
     #
     # *** To enable IP authentication execute:
@@ -148,7 +155,7 @@ data:
     #!ifdef WITH_MYSQL
     # - database URL - used to connect to database server by modules such
     #       as: auth_db, acc, usrloc, a.s.o.
-    #!trydef DBURL "mysql://kamailio:kamailiorw@localhost/kamailio"
+    #!trydef DBURL "mysql://kamailio:kamailiorw@mariadb.db.svc.cluster.local/kamailio"
     #!endif
     
     #!ifdef WITH_MULTIDOMAIN
