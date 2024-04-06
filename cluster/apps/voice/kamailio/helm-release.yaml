@@ -70,3 +70,17 @@ spec:
         globalMounts:
           - path: /etc/kamailio/kamailio.cfg
             subPath: kamailio.cfg
+      config-base:
+        enabled: true
+        type: configMap
+        name: kam-base
+        globalMounts:
+          - path: /etc/kamailio/kamailio-base.cfg
+            subPath: kamailio-base.cfg
+      config-mod:
+        enabled: true
+        type: configMap
+        name: kam-mod
+        globalMounts:
+          - path: /etc/kamailio/kamailio-mod.cfg
+            subPath: kamailio-mod.cfg

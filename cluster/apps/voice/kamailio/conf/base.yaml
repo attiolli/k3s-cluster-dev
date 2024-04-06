@@ -1,0 +1,139 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kam-base
+  namespace: voice
+data:
+  kamailio-base.cfg: |
+    ###!define WITH_DEBUG
+    #!define WITH_MYSQL
+    #!define WITH_AUTH
+    #!define WITH_USRLOCDB
+
+    ####### Defined Values #########
+    
+    # *** Value defines - IDs used later in config
+    #!ifdef WITH_DEBUG
+    #!define DBGLEVEL 3
+    #!else
+    #!define DBGLEVEL 2
+    #!endif
+    
+    #!ifdef WITH_MYSQL
+    # - database URL - used to connect to database server by modules such
+    #       as: auth_db, acc, usrloc, a.s.o.
+    #!define DBURL "mysql://kamailio:kamailiorw@mariadb.db.svc.cluster.local/kamailio"
+    #!endif
+    
+    #!ifdef WITH_MULTIDOMAIN
+    # - the value for 'use_domain' parameters
+    #!define MULTIDOMAIN 1
+    #!else
+    #!define MULTIDOMAIN 0
+    #!endif
+    
+    # - flags
+    #   FLT_ - per transaction (message) flags
+    #!define FLT_ACC 1
+    #!define FLT_ACCMISSED 2
+    #!define FLT_ACCFAILED 3
+    #!define FLT_NATS 5
+    
+    #       FLB_ - per branch flags
+    #!define FLB_NATB 6
+    #!define FLB_NATSIPPING 7
+    
+    ####### Global Parameters #########
+    
+    debug=DBGLEVEL
+    log_stderror=no
+    memdbg=5
+    memlog=5
+    log_facility=LOG_LOCAL0
+    log_prefix="{$mt $hdr(CSeq) $ci} "
+    children=8
+    alias="kam.oatel.net"
+    listen=eth0:5060 advertise 10.0.44.115:5060
+    tcp_connection_lifetime=3605
+    tcp_max_connections=2048
+    enable_sctp=no
+    
+    ####### Custom Parameters #########
+    
+    #!ifdef WITH_PSTN
+    /* PSTN GW Routing
+     *
+     * - pstn.gw_ip: valid IP or hostname as string value, example:
+     * pstn.gw_ip = "10.0.0.101" desc "My PSTN GW Address"
+     *
+     * - by default is empty to avoid misrouting */
+    pstn.gw_ip = "" desc "PSTN GW Address"
+    pstn.gw_port = "" desc "PSTN GW Port"
+    #!endif
+    
+    ####### Modules Section ########
+    
+    /* set paths to location of modules */
+    # mpath="/usr/lib/kamailio/modules/"
+    
+    #!ifdef WITH_MYSQL
+    loadmodule "db_mysql.so"
+    #!endif
+    loadmodule "jsonrpcs.so"
+    loadmodule "kex.so"
+    loadmodule "corex.so"
+    loadmodule "tm.so"
+    loadmodule "tmx.so"
+    loadmodule "sl.so"
+    loadmodule "rr.so"
+    loadmodule "pv.so"
+    loadmodule "maxfwd.so"
+    loadmodule "usrloc.so"
+    loadmodule "registrar.so"
+    loadmodule "textops.so"
+    loadmodule "textopsx.so"
+    loadmodule "siputils.so"
+    loadmodule "xlog.so"
+    loadmodule "sanity.so"
+    loadmodule "ctl.so"
+    loadmodule "cfg_rpc.so"
+    loadmodule "acc.so"
+    loadmodule "counters.so"
+    
+    #!ifdef WITH_AUTH
+    loadmodule "auth.so"
+    loadmodule "auth_db.so"
+    #!ifdef WITH_IPAUTH
+    loadmodule "permissions.so"
+    #!endif
+    #!endif
+    
+    #!ifdef WITH_ALIASDB
+    loadmodule "alias_db.so"
+    #!endif
+    
+    #!ifdef WITH_MULTIDOMAIN
+    loadmodule "domain.so"
+    #!endif
+    
+    #!ifdef WITH_PRESENCE
+    loadmodule "presence.so"
+    loadmodule "presence_xml.so"
+    #!endif
+    
+    #!ifdef WITH_NAT
+    loadmodule "nathelper.so"
+    #!ifdef WITH_RTPENGINE
+    loadmodule "rtpengine.so"
+    #!else
+    loadmodule "rtpproxy.so"
+    #!endif
+    #!endif
+    
+    #!ifdef WITH_HTABLE
+    loadmodule "htable.so"
+    #!endif
+    
+    #!ifdef WITH_DEBUG
+    loadmodule "debugger.so"
+    #!endif
