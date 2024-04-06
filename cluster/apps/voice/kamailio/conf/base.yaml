@@ -21,7 +21,7 @@ data:
     #!ifdef WITH_MYSQL
     # - database URL - used to connect to database server by modules such
     #       as: auth_db, acc, usrloc, a.s.o.
-    #!define DBURL "mysql://"${KAMAILIO_USER}":"${KAMAILIO_PASSWORD}"@mariadb.db.svc.cluster.local/kamailio"
+    #!define DBURL "mysql://${KAMAILIO_USER}:${KAMAILIO_PASSWORD}@mariadb.db.svc.cluster.local/kamailio"
     #!endif
     
     #!ifdef WITH_MULTIDOMAIN
