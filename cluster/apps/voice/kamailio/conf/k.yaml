@@ -139,6 +139,7 @@ data:
                             setflag(FLT_ACCFAILED); # ... even if the transaction fails
                     } else if ( is_method("ACK") ) {
                             # ACK is forwarded statelessly
+                            return;
                     } else if ( is_method("NOTIFY") ) {
                             # Add Record-Route for in-dialog NOTIFY as per RFC 6665.
                             record_route();
