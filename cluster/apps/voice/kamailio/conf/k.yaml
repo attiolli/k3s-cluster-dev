@@ -6,22 +6,6 @@ metadata:
 data:
   kamailio.cfg: |
     #!KAMAILIO
-    
-    ####### Global Parameters #########
-
-    debug=DBGLEVEL
-    log_stderror=no
-    memdbg=5
-    memlog=5
-    log_facility=LOG_LOCAL0
-    log_prefix="{$mt $hdr(CSeq) $ci} "
-    children=8
-    alias="kam.oatel.net"
-    listen=eth0:5060 advertise 10.0.44.115:5060
-    tcp_connection_lifetime=3605
-    tcp_max_connections=2048
-    enable_sctp=no
-
     import_file "kamailio-base.cfg"
     import_file "kamailio-mod.cfg"
     
