@@ -7,8 +7,6 @@ data:
   kamailio.cfg: |
     #!KAMAILIO
     import_file "kamailio-base.cfg"
-    import_file "kamailio-mod.cfg"
-    
     request_route {
     
             # per request initial checks

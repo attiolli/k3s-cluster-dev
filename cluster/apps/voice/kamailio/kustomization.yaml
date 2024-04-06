@@ -4,6 +4,5 @@ kind: Kustomization
 resources:
   - rbac.yaml
   - conf/base.yaml
-  - conf/mod.yaml
   - conf/k.yaml
   - helm-release.yaml
