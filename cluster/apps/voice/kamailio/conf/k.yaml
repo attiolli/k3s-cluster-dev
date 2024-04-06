@@ -12,9 +12,6 @@ data:
             # per request initial checks
             route(REQINIT);
     
-            # NAT detection
-            route(NATDETECT);
-    
             # CANCEL processing
             if (is_method("CANCEL")) {
                     if (t_check_trans()) {
@@ -107,23 +104,6 @@ data:
             # - send back replies to the source address of request
             force_rport();
     
-    #!ifdef WITH_ANTIFLOOD
-            # flood detection from same IP and traffic ban for a while
-            # be sure you exclude checking trusted peers, such as pstn gateways
-            # - local host excluded (e.g., loop to self)
-            if(src_ip!=myself) {
-                    if($sht(ipban=>$si)!=$null) {
-                            # ip is already blocked
-                            xdbg("request from blocked IP - $rm from $fu (IP:$si:$sp)\n");
-                            exit;
-                    }
-                    if (!pike_check_req()) {
-                            xalert("ALERT: pike blocking $rm from $fu (IP:$si:$sp)\n");
-                            $sht(ipban=>$si) = 1;
-                            exit;
-                    }
-            }
-    #!endif
             if($ua =~ "friendly|scanner|sipcli|sipvicious|VaxSIPUserAgent|pplsip") {
                     # silent drop for scanners - uncomment next line if want to reply
                     # sl_send_reply("200", "OK");
@@ -159,7 +139,6 @@ data:
                             setflag(FLT_ACCFAILED); # ... even if the transaction fails
                     } else if ( is_method("ACK") ) {
                             # ACK is forwarded statelessly
-                            route(NATMANAGE);
                     } else if ( is_method("NOTIFY") ) {
                             # Add Record-Route for in-dialog NOTIFY as per RFC 6665.
                             record_route();
@@ -195,10 +174,6 @@ data:
     
             if(isflagset(FLT_NATS)) {
                     setbflag(FLB_NATB);
-    #!ifdef WITH_NATSIPPING
-                    # do SIP NAT pinging
-                    setbflag(FLB_NATSIPPING);
-    #!endif
             }
             if (!save("location")) {
                     sl_reply_error();
@@ -208,15 +183,6 @@ data:
     
     # User location service
     route[LOCATION] {
-    
-    #!ifdef WITH_SPEEDDIAL
-            # search for short dialing - 2-digit extension
-            if($rU=~"^[0-9][0-9]$") {
-                    if(sd_lookup("speed_dial")) {
-                            route(SIPOUT);
-                    }
-            }
-    #!endif
     
     #!ifdef WITH_ALIASDB
             # search in DB-based aliases
@@ -228,7 +194,6 @@ data:
             $avp(oexten) = $rU;
             if (!lookup("location")) {
                     $var(rc) = $rc;
-                    route(TOVOICEMAIL);
                     t_newtran();
                     switch ($var(rc)) {
                             case -1:
@@ -255,17 +220,12 @@ data:
             if(!is_method("PUBLISH|SUBSCRIBE")) return;
     
             if(is_method("SUBSCRIBE") && $hdr(Event)=="message-summary") {
-                    route(TOVOICEMAIL);
                     # returns here if no voicemail server is configured
                     sl_send_reply("404", "No voicemail service");
                     exit;
             }
     
     #!ifdef WITH_PRESENCE
-    #!ifdef WITH_MSGREBUILD
-            # apply changes in case the request headers or body were modified
-            msg_apply_changes();
-    #!endif
             if (!t_newtran()) {
                     sl_reply_error();
                     exit;
@@ -292,13 +252,6 @@ data:
     # IP authorization and user authentication
     route[AUTH] {
     #!ifdef WITH_AUTH
-    
-    #!ifdef WITH_IPAUTH
-            if((!is_method("REGISTER")) && allow_source_address()) {
-                    # source IP allowed
-                    return;
-            }
-    #!endif
     
             if (is_method("REGISTER") || from_uri==myself) {
                     # authenticate requests
@@ -329,82 +282,9 @@ data:
             return;
     }
     
-    # Caller NAT detection
-    route[NATDETECT] {
-    #!ifdef WITH_NAT
-            if (nat_uac_test("19")) {
-                    if (is_method("REGISTER")) {
-                            fix_nated_register();
-                    } else {
-                            if(is_first_hop()) {
-                                    set_contact_alias();
-                            }
-                    }
-                    setflag(FLT_NATS);
-            }
-    #!endif
-            return;
-    }
-    
-    # RTP relaying management and signaling updates for NAT traversal
-    route[NATMANAGE] {
-    #!ifdef WITH_NAT
-            if (is_request()) {
-                    if(has_totag()) {
-                            if(check_route_param("nat=yes")) {
-                                    setbflag(FLB_NATB);
-                            }
-                    }
-            }
-            if (!(isflagset(FLT_NATS) || isbflagset(FLB_NATB))) return;
-    
-    #!ifdef WITH_RTPENGINE
-            if(nat_uac_test("8")) {
-                    rtpengine_manage("SIP-source-address replace-origin replace-session-connection");
-            } else {
-                    rtpengine_manage("replace-origin replace-session-connection");
-            }
-    #!else
-            if(nat_uac_test("8")) {
-                    rtpproxy_manage("co");
-            } else {
-                    rtpproxy_manage("cor");
-            }
-    #!endif
-    
-            if (is_request()) {
-                    if (!has_totag()) {
-                            if(t_is_branch_route()) {
-                                    add_rr_param(";nat=yes");
-                            }
-                    }
-            }
-            if (is_reply()) {
-                    if(isbflagset(FLB_NATB)) {
-                            if(is_first_hop())
-                                    set_contact_alias();
-                    }
-            }
-    
-            if(isbflagset(FLB_NATB)) {
-                    # no connect message in a dialog involving NAT traversal
-                    if (is_request()) {
-                            if(has_totag()) {
-                                    set_forward_no_connect();
-                            }
-                    }
-            }
-    #!endif
-            return;
-    }
     
     # URI update for dialog requests
     route[DLGURI] {
-    #!ifdef WITH_NAT
-            if(!isdsturiset()) {
-                    handle_ruri_alias();
-            }
-    #!endif
             return;
     }
     
@@ -458,59 +338,9 @@ data:
             return;
     }
     
-    # JSONRPC over HTTP(S) routing
-    #!ifdef WITH_JSONRPC
-    event_route[xhttp:request] {
-            set_reply_close();
-            set_reply_no_connect();
-            if(src_ip!=127.0.0.1) {
-                    xhttp_reply("403", "Forbidden", "text/html",
-                                    "<html><body>Not allowed from $si</body></html>");
-                    exit;
-            }
-            if ($hu =~ "^/RPC") {
-                    jsonrpc_dispatch();
-                    exit;
-            }
-    
-            xhttp_reply("200", "OK", "text/html",
-                                    "<html><body>Wrong URL $hu</body></html>");
-        exit;
-    }
-    #!endif
-    
-    # Routing to voicemail server
-    route[TOVOICEMAIL] {
-    #!ifdef WITH_VOICEMAIL
-            if(!is_method("INVITE|SUBSCRIBE")) return;
-    
-            # check if VoiceMail server IP is defined
-            if (strempty($sel(cfg_get.voicemail.srv_ip))) {
-                    xlog("SCRIPT: VoiceMail routing enabled but IP not defined\n");
-                    return;
-            }
-            if(is_method("INVITE")) {
-                    if($avp(oexten)==$null) return;
-    
-                    $ru = "sip:" + $avp(oexten) + "@" + $sel(cfg_get.voicemail.srv_ip)
-                                    + ":" + $sel(cfg_get.voicemail.srv_port);
-            } else {
-                    if($rU==$null) return;
-    
-                    $ru = "sip:" + $rU + "@" + $sel(cfg_get.voicemail.srv_ip)
-                                    + ":" + $sel(cfg_get.voicemail.srv_port);
-            }
-            route(RELAY);
-            exit;
-    #!endif
-    
-            return;
-    }
-    
     # Manage outgoing branches
     branch_route[MANAGE_BRANCH] {
             xdbg("new branch [$T_branch_idx] to $ru\n");
-            route(NATMANAGE);
             return;
     }
     
@@ -527,41 +357,13 @@ data:
     onreply_route[MANAGE_REPLY] {
             xdbg("incoming reply\n");
             if(status=~"[12][0-9][0-9]") {
-                    route(NATMANAGE);
             }
             return;
     }
     
     # Manage failure routing cases
     failure_route[MANAGE_FAILURE] {
-            route(NATMANAGE);
     
             if (t_is_canceled()) exit;
-    
-    #!ifdef WITH_BLOCK3XX
-            # block call redirect based on 3xx replies.
-            if (t_check_status("3[0-9][0-9]")) {
-                    t_reply("404", "Not found");
-                    exit;
-            }
-    #!endif
-    
-    #!ifdef WITH_BLOCK401407
-            # block call redirect based on 401, 407 replies.
-            if (t_check_status("401|407")) {
-                    t_reply("404", "Not found");
-                    exit;
-            }
-    #!endif
-    
-    #!ifdef WITH_VOICEMAIL
-            # serial forking
-            # - route to voicemail on busy or no answer (timeout)
-            if (t_check_status("486|408")) {
-                    $du = $null;
-                    route(TOVOICEMAIL);
-                    exit;
-            }
-    #!endif
             return;
     }
