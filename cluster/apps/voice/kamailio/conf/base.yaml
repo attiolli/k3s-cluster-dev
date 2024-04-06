@@ -10,12 +10,7 @@ data:
     #!define WITH_AUTH
     #!define WITH_USRLOCDB
 
-
-    ####### Include Local Config If Exists #########
-    import_file "kamailio-local.cfg"
-    
     ####### Defined Values #########
-    
     # *** Value defines - IDs used later in config
     #!ifdef WITH_DEBUG
     #!define DBGLEVEL 3
@@ -36,95 +31,33 @@ data:
     #!define MULTIDOMAIN 0
     #!endif
     
-    #!ifdef WITH_ANTIFLOOD
-    # - hash table 'ipban' used to store blocked IP addresses
-    #!trydef WITH_HTABLE
-    #!endif
-    
     # - flags
     #   FLT_ - per transaction (message) flags
     #!define FLT_ACC 1
     #!define FLT_ACCMISSED 2
     #!define FLT_ACCFAILED 3
     #!define FLT_NATS 5
-    
     #       FLB_ - per branch flags
     #!define FLB_NATB 6
     #!define FLB_NATSIPPING 7
     
     ####### Global Parameters #########
     
-    /* LOG Levels: 3=DBG, 2=INFO, 1=NOTICE, 0=WARN, -1=ERR, ... */
     debug=DBGLEVEL
-    
-    /* set to 'yes' to print log messages to terminal or use '-E' cli option */
     log_stderror=no
-    
     memdbg=5
     memlog=5
-    
     log_facility=LOG_LOCAL0
     log_prefix="{$mt $hdr(CSeq) $ci} "
-    
-    /* number of SIP routing processes for each UDP socket
-     * - value inherited by tcp_children and sctp_children when not set explicitely */
     children=8
-    
-    /* uncomment the next line to disable TCP (default on) */
-    # disable_tcp=yes
-    
-    /* number of SIP routing processes for all TCP/TLS sockets */
-    # tcp_children=8
-    
-    /* uncomment the next line to disable the auto discovery of local aliases
-     * based on reverse DNS on IPs (default on) */
     # auto_aliases=no
-    
-    /* add local domain aliases - it can be set many times */
     alias="kam.oatel.net"
-    
-    /* listen sockets - if none set, Kamailio binds to all local IP addresses
-     * - basic prototype (full prototype can be found in Wiki - Core Cookbook):
-     *      listen=[proto]:[localip]:[lport] advertise [publicip]:[pport]
-     * - it can be set many times to add more sockets to listen to */
     listen=eth0:5060 advertise 10.0.44.115:5060
-    
-    /* life time of TCP connection when there is no traffic
-     * - a bit higher than registration expires to cope with UA behind NAT */
     tcp_connection_lifetime=3605
-    
-    /* upper limit for TCP connections (it includes the TLS connections) */
     tcp_max_connections=2048
-    
-    #!ifdef WITH_JSONRPC
-    tcp_accept_no_cl=yes
-    #!endif
-    
-    #!ifdef WITH_TLS
-    enable_tls=yes
-    
-    /* upper limit for TLS connections */
-    tls_max_connections=2048
-    
-    /* For OpenSSL 3 integration
-     * functions calling libssl3 can be invoked in a transient thread
-     * 0: disable threaded calls
-     * 1: use thread executors for process#0 only
-     * 2: no thread executors, but use atfork handler to reset thread-locals to NULL
-     * 3: use thread executors for all processes */
-    tls_threads_mode=1
-    #!endif
-    
-    /* set it to yes to enable sctp and load sctp.so module */
     enable_sctp=no
     
     ####### Custom Parameters #########
-    
-    /* These parameters can be modified at runtime via RPC interface
-     * - see the documentation of 'cfg_rpc' module.
-     *
-     * Format: group.id = value 'desc' description
-     * Access: $sel(cfg_get.group.id) or @cfg_get.group.id */
     
     #!ifdef WITH_PSTN
     /* PSTN GW Routing
@@ -137,32 +70,15 @@ data:
     pstn.gw_port = "" desc "PSTN GW Port"
     #!endif
     
-    #!ifdef WITH_VOICEMAIL
-    /* VoiceMail Routing on offline, busy or no answer
-     *
-     * - by default Voicemail server IP is empty to avoid misrouting */
-    voicemail.srv_ip = "" desc "VoiceMail IP Address"
-    voicemail.srv_port = "5060" desc "VoiceMail Port"
-    #!endif
-    
     ####### Modules Section ########
     
     /* set paths to location of modules */
     # mpath="/usr/lib/kamailio/modules/"
     
-    # when using TLS with OpenSSL it is recommended to load this module
-    # first so that OpenSSL is initialized correctly
-    #!ifdef WITH_TLS
-    loadmodule "tls.so"
-    #!endif
-    
     #!ifdef WITH_MYSQL
     loadmodule "db_mysql.so"
     #!endif
     
-    #!ifdef WITH_JSONRPC
-    loadmodule "xhttp.so"
-    #!endif
     loadmodule "jsonrpcs.so"
     loadmodule "kex.so"
     loadmodule "corex.so"
@@ -187,17 +103,6 @@ data:
     #!ifdef WITH_AUTH
     loadmodule "auth.so"
     loadmodule "auth_db.so"
-    #!ifdef WITH_IPAUTH
-    loadmodule "permissions.so"
-    #!endif
-    #!endif
-    
-    #!ifdef WITH_ALIASDB
-    loadmodule "alias_db.so"
-    #!endif
-    
-    #!ifdef WITH_SPEEDDIAL
-    loadmodule "speeddial.so"
     #!endif
     
     #!ifdef WITH_MULTIDOMAIN
@@ -222,30 +127,11 @@ data:
     loadmodule "htable.so"
     #!endif
     
-    #!ifdef WITH_ANTIFLOOD
-    loadmodule "pike.so"
-    #!endif
-    
     #!ifdef WITH_DEBUG
     loadmodule "debugger.so"
     #!endif
     
     # ----------------- setting module-specific parameters ---------------
-    
-    
-    # ----- jsonrpcs params -----
-    modparam("jsonrpcs", "pretty_format", 1)
-    /* set the path to RPC fifo control file */
-    # modparam("jsonrpcs", "fifo_name", "/run/kamailio/kamailio_rpc.fifo")
-    /* set the path to RPC unix socket control file */
-    # modparam("jsonrpcs", "dgram_socket", "/run/kamailio/kamailio_rpc.sock")
-    #!ifdef WITH_JSONRPC
-    modparam("jsonrpcs", "transport", 7)
-    #!endif
-    
-    # ----- ctl params -----
-    /* set the path to RPC unix socket control file */
-    # modparam("ctl", "binrpc", "unix:/run/kamailio/kamailio_ctl")
     
     # ----- sanity params -----
     modparam("sanity", "autodrop", 0)
@@ -331,18 +217,6 @@ data:
     
     #!endif
     
-    # ----- alias_db params -----
-    #!ifdef WITH_ALIASDB
-    modparam("alias_db", "db_url", DBURL)
-    modparam("alias_db", "use_domain", MULTIDOMAIN)
-    #!endif
-    
-    # ----- speeddial params -----
-    #!ifdef WITH_SPEEDDIAL
-    modparam("speeddial", "db_url", DBURL)
-    modparam("speeddial", "use_domain", MULTIDOMAIN)
-    #!endif
-    
     # ----- domain params -----
     #!ifdef WITH_MULTIDOMAIN
     modparam("domain", "db_url", DBURL)
@@ -376,18 +250,6 @@ data:
     # params needed for NAT traversal in other modules
     modparam("nathelper|registrar", "received_avp", "$avp(RECEIVED)")
     modparam("usrloc", "nat_bflag", FLB_NATB)
-    #!endif
-    
-    #!ifdef WITH_TLS
-    # ----- tls params -----
-    modparam("tls", "config", "/etc/kamailio/tls.cfg")
-    #!endif
-    
-    #!ifdef WITH_ANTIFLOOD
-    # ----- pike params -----
-    modparam("pike", "sampling_time_unit", 2)
-    modparam("pike", "reqs_density_per_unit", 16)
-    modparam("pike", "remove_latency", 4)
     #!endif
     
     #!ifdef WITH_HTABLE
