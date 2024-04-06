@@ -4,7 +4,7 @@ metadata:
   name: kam-mod
   namespace: voice
 data:
-  kamailio-modules.cfg: |
+  kamailio-mod.cfg: |
     # ----- jsonrpcs params -----
     modparam("jsonrpcs", "pretty_format", 1)
     /* set the path to RPC fifo control file */
