@@ -81,7 +81,7 @@ data:
     /* set paths to location of modules */
     # mpath="/usr/lib/kamailio/modules/"
     
-    loadmodule "dmq.so"
+    
 
     #!ifdef WITH_MYSQL
     loadmodule "db_mysql.so"
@@ -139,6 +139,8 @@ data:
     loadmodule "debugger.so"
     #!endif
     
+    loadmodule "dmq.so"
+
     # ----------------- setting module-specific parameters ---------------
     
     # ----- dmq params -----
