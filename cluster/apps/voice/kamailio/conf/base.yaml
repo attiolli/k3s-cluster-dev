@@ -10,6 +10,11 @@ data:
     #!define WITH_AUTH
     #!define WITH_USRLOCDB
 
+    #!define DMQ_PORT 5062
+    #!define DMQ_LISTEN udp:net1:5062
+    #!define DMQ_SERVER_ADDRESS udp:net1:5062
+    #!define DMQ_NOTIFICATION_ADDRESS udp:kdmqlab.oatel.net:5062
+
     ####### Defined Values #########
     # *** Value defines - IDs used later in config
     #!ifdef WITH_DEBUG
@@ -53,6 +58,7 @@ data:
     # auto_aliases=no
     alias="kam.oatel.net"
     listen=eth0:5060 advertise '${SVC_KAM_PUB_ADDR}':5060
+    listen=DMQ_LISTEN
     tcp_connection_lifetime=3605
     tcp_max_connections=2048
     enable_sctp=no
@@ -75,6 +81,8 @@ data:
     /* set paths to location of modules */
     # mpath="/usr/lib/kamailio/modules/"
     
+    loadmodule "dmq.so"
+
     #!ifdef WITH_MYSQL
     loadmodule "db_mysql.so"
     #!endif
@@ -133,6 +141,13 @@ data:
     
     # ----------------- setting module-specific parameters ---------------
     
+    # ----- dmq params -----
+    modparam("dmq", "server_address", DMQ_SERVER_ADDRESS)
+    modparam("dmq", "notification_address", DMQ_NOTIFICATION_ADDRESS)
+    modparam("dmq", "multi_notify", 1)
+    modparam("dmq", "num_workers", 4)
+    modparam("dmq", "ping_interval", 15)
+
     # ----- sanity params -----
     modparam("sanity", "autodrop", 0)
     
