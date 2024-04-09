@@ -12,7 +12,7 @@ data:
 
     #!define DMQ_PORT 5062
     #!define DMQ_LISTEN net1:5062
-    #!define DMQ_SERVER_ADDRESS sip:0.0.0.0:5062
+    #!define DMQ_SERVER_ADDRESS udp:net1:5062
     #!define DMQ_NOTIFICATION_ADDRESS sip:kdmqlab.oatel.net:5062
 
     ####### Defined Values #########
