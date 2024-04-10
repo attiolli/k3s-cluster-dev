@@ -36,7 +36,7 @@ spec:
           main:
             image:
               repository: ghcr.io/kamailio/kamailio
-              tag: 5.8.0-xenial
+              tag: 5.8.1-xenial
         pod:
           annotations:
             k8s.v1.cni.cncf.io/networks: kdmq-range
