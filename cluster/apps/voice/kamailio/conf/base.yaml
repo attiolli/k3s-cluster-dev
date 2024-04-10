@@ -107,7 +107,7 @@ data:
     loadmodule "cfg_rpc.so"
     loadmodule "acc.so"
     loadmodule "counters.so"
-    loadmodule "dialog.so"
+    
 
     #!ifdef WITH_AUTH
     loadmodule "auth.so"
@@ -142,6 +142,7 @@ data:
     
     loadmodule "dmq.so"
     loadmodule "dmq_usrloc.so"
+    loadmodule "dialog.so"
 
     # ----------------- setting module-specific parameters ---------------
     
