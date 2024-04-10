@@ -58,7 +58,7 @@ data:
     # auto_aliases=no
     alias="kam.oatel.net"
     listen=eth0:5060 advertise '${SVC_KAM_PUB_ADDR}':5060 name "s0"
-    listen=net1:5062
+    listen=udp:net1:5062
     tcp_connection_lifetime=3605
     tcp_max_connections=2048
     enable_sctp=no
@@ -147,7 +147,7 @@ data:
     # ----------------- setting module-specific parameters ---------------
     
     # ----- dmq params -----
-    modparam("dmq", "server_address", "sip:net1:5062")
+    modparam("dmq", "server_address", "udp:net1:5062")
     modparam("dmq", "notification_address", "sip:kdmqlab.oatel.net:5062")
     modparam("dmq", "multi_notify", 1)
     modparam("dmq", "num_workers", 4)
