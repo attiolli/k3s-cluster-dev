@@ -57,7 +57,7 @@ data:
     children=8
     # auto_aliases=no
     alias="kam.oatel.net"
-    listen=eth0:5060 advertise '${SVC_KAM_PUB_ADDR}':5060
+    listen=eth0:5060 advertise '${SVC_KAM_PUB_ADDR}':5060 name "s0"
     listen=0.0.0.0:5062
     tcp_connection_lifetime=3605
     tcp_max_connections=2048
