@@ -140,6 +140,7 @@ data:
     #!endif
     
     loadmodule "dmq.so"
+    loadmodule "dmq_usrloc.so"
 
     # ----------------- setting module-specific parameters ---------------
     
