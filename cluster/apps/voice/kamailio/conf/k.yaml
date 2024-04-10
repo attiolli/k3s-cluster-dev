@@ -268,7 +268,6 @@ data:
                     # user authenticated - remove auth header
                     if(!is_method("REGISTER|PUBLISH"))
                             consume_credentials();
-                            dmq_t_replicate();
             }
             # if caller is not local subscriber, then check if it calls
             # a local destination, otherwise deny, not an open relay here
