@@ -107,7 +107,8 @@ data:
     loadmodule "cfg_rpc.so"
     loadmodule "acc.so"
     loadmodule "counters.so"
-    
+    loadmodule "dialog.so"
+
     #!ifdef WITH_AUTH
     loadmodule "auth.so"
     loadmodule "auth_db.so"
