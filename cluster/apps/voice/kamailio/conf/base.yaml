@@ -153,7 +153,7 @@ data:
     modparam("dmq", "num_workers", 4)
     modparam("dmq", "ping_interval", 15)
     modparam("dmq_usrloc", "enable", 1)
-    modparam("dmq_usrloc", "replicate_socket_info", 1)
+    modparam("dmq_usrloc", "replicate_socket_info", 2)
 
     # ----- sanity params -----
     modparam("sanity", "autodrop", 0)
