@@ -96,7 +96,7 @@ data:
             }
 
             # Select proper socket for sending out
-            $fsn = "s0";
+            $fs = "udp:10.0.44.115:5060";
 
             if (!t_relay()) {
                     sl_reply_error();
