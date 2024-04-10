@@ -12,6 +12,11 @@ data:
             # per request initial checks
             route(REQINIT);
     
+                # Handle KDMQ messages
+                if (is_method("KDMQ") && $Rp == 5062) {
+                        dmq_handle_message();
+                }
+
             # CANCEL processing
             if (is_method("CANCEL")) {
                     if (t_check_trans()) {

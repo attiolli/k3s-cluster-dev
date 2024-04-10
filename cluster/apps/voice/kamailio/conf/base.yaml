@@ -149,6 +149,7 @@ data:
     modparam("dmq", "multi_notify", 1)
     modparam("dmq", "num_workers", 4)
     modparam("dmq", "ping_interval", 15)
+    modparam("dmq_usrloc", "enable", 1)
 
     # ----- sanity params -----
     modparam("sanity", "autodrop", 0)
@@ -218,6 +219,9 @@ data:
     modparam("usrloc", "db_mode", 2)
     #!endif
     
+    # ----- dialog params -----
+    modparam("dialog", "enable_dmq", 1)
+
     # ----- auth_db params -----
     #!ifdef WITH_AUTH
     modparam("auth_db", "db_url", DBURL)
