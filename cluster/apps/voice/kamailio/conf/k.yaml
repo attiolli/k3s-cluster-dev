@@ -110,7 +110,7 @@ data:
             set_reply_no_connect();
             # enforce symmetric signaling
             # - send back replies to the source address of request
-            force_rport();
+            #force_rport();
     
             if($ua =~ "friendly|scanner|sipcli|sipvicious|VaxSIPUserAgent|pplsip") {
                     # silent drop for scanners - uncomment next line if want to reply
