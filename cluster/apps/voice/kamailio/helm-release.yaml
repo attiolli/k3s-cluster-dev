@@ -39,7 +39,7 @@ spec:
               tag: 5.8.0-xenial
         pod:
           annotations:
-            k8s.v1.cni.cncf.io/networks: kdmq-range
+            k8s.v1.cni.cncf.io/networks: kdmq-range, k-vip
           tolerations:
             - key: "master"
               operator: "Equal"
