@@ -132,6 +132,10 @@ data:
                     xlog("Malformed SIP request from $si:$sp\n");
                     exit;
             }
+            # Manage new INVITE dialogs
+            if(is_method("INVITE") && !has_totag()) {
+                dlg_manage();
+            }
     }
     
     # Handle requests within SIP dialogs
