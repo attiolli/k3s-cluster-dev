@@ -96,7 +96,7 @@ data:
             }
 
             # Select proper socket for sending out
-            $fsn = "sVIP";
+            $fsn = "sLocalSig";
 
             if (!t_relay()) {
                     sl_reply_error();
