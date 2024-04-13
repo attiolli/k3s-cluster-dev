@@ -95,9 +95,6 @@ data:
                     if(!t_is_set("failure_route")) t_on_failure("MANAGE_FAILURE");
             }
 
-            # Select proper socket for sending out
-            $fsn = "sLocalSig";
-
             if (!t_relay()) {
                     sl_reply_error();
             }
@@ -110,7 +107,7 @@ data:
             set_reply_no_connect();
             # enforce symmetric signaling
             # - send back replies to the source address of request
-            #force_rport();
+            force_rport();
     
             if($ua =~ "friendly|scanner|sipcli|sipvicious|VaxSIPUserAgent|pplsip") {
                     # silent drop for scanners - uncomment next line if want to reply
