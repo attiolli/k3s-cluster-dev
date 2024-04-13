@@ -95,7 +95,7 @@ data:
                     if(!t_is_set("failure_route")) t_on_failure("MANAGE_FAILURE");
             }
 
-            $fsn = "sLocalSig";
+            #$fsn = "sLocalSig";
 
             if (!t_relay()) {
                     sl_reply_error();
