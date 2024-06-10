@@ -274,7 +274,8 @@ data:
     modparam("nathelper", "natping_interval", 15)
     modparam("nathelper", "ping_nated_only", 0)
     modparam("nathelper", "sipping_bflag", FLB_NATSIPPING)
-    modparam("nathelper", "sipping_from", "sip:pinger@kamailio.org")
+    modparam("nathelper", "natping_socket", "kam.oatel.net:5060")
+    modparam("nathelper", "sipping_from", "sip:pinger@kam.oatel.net")
     # params needed for NAT traversal in other modules
     modparam("nathelper|registrar", "received_avp", "$avp(RECEIVED)")
     modparam("usrloc", "nat_bflag", FLB_NATB)
