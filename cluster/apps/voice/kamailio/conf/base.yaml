@@ -123,6 +123,8 @@ data:
     loadmodule "presence.so"
     loadmodule "presence_xml.so"
     #!endif
+    #
+    loadmodule "nathelper.so"
     
     #!ifdef WITH_NAT
     loadmodule "nathelper.so"
@@ -266,16 +268,16 @@ data:
     # ----- rtpproxy params -----
     modparam("rtpproxy", "rtpproxy_sock", "udp:127.0.0.1:7722")
     #!endif
+    #!endif
+    #
     # ----- nathelper params -----
-    modparam("nathelper", "natping_interval", 30)
-    modparam("nathelper", "ping_nated_only", 1)
+    modparam("nathelper", "natping_interval", 15)
+    modparam("nathelper", "ping_nated_only", 0)
     modparam("nathelper", "sipping_bflag", FLB_NATSIPPING)
     modparam("nathelper", "sipping_from", "sip:pinger@kamailio.org")
-    
     # params needed for NAT traversal in other modules
     modparam("nathelper|registrar", "received_avp", "$avp(RECEIVED)")
     modparam("usrloc", "nat_bflag", FLB_NATB)
-    #!endif
     
     #!ifdef WITH_HTABLE
     # ----- htable params -----
