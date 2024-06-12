@@ -149,7 +149,7 @@ data:
     # ----------------- setting module-specific parameters ---------------
     
     # ----- dmq params -----
-    modparam("dmq", "server_address", "sip:0.0.0.0:5060")
+    modparam("dmq", "server_address", "sip:net1:5060")
     modparam("dmq", "notification_address", "sip:kdmqlab.oatel.net:5060")
     modparam("dmq", "multi_notify", 1)
     modparam("dmq", "num_workers", 4)
