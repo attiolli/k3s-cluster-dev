@@ -60,6 +60,7 @@ data:
     listen=net1:5060 advertise '${SVC_KAM_PUB_ADDR}':5060
     listen=eth0:5060 advertise '${SVC_KAM_PUB_ADDR}':5060
     listen=0.0.0.0:5062 advertise '${SVC_KAM_PUB_ADDR}':5060
+    mhomed=1
     tcp_connection_lifetime=3605
     tcp_max_connections=2048
     enable_sctp=no
