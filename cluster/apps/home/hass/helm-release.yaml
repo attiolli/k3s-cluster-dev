@@ -64,17 +64,17 @@ spec:
               value: "false"
               effect: "NoSchedule"
 
-     service:
-       app:
-         controller: hass
-         ports:
-           http:
-             port: 8123
-       code:
-         controller: hass
-         ports:
-           code:
-             port: 8080
+    service:
+      app:
+        controller: hass
+        ports:
+          http:
+            port: 8123
+      code:
+        controller: hass
+        ports:
+          code:
+            port: 8080
 
     ingress:
       app:
