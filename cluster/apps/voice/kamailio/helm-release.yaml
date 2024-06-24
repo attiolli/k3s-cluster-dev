@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -27,13 +27,13 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      kamailio:
         replicas: 2
-        #strategy: RollingUpdate
+        strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/kamailio/kamailio
               tag: 5.8.2-xenial
@@ -47,7 +47,8 @@ spec:
               effect: "NoSchedule"
 
     service:
-      main:
+      app:
+        controller: kamailio
         type: LoadBalancer
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${SVC_KAM_PUB_ADDR}"
@@ -56,8 +57,6 @@ spec:
         ipFamilies:
           - IPv4
         ports:
-          http:
-            enabled: false
           sip-udp:
             enabled: true
             port: 5060
