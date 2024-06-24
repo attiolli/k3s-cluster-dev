@@ -49,6 +49,7 @@ spec:
               effect: "NoSchedule"
     service:
       app:
+        controller: lms
         ports:
           http:
             port: 9000
