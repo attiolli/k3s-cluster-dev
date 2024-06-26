@@ -37,6 +37,8 @@ spec:
       persistence:
         enabled: true
         existingClaim: mariadb
+        annotations:
+          reloader.stakater.com/auto: "true"
     initdbScripts:
       allow.sql: |
         GRANT ALL PRIVILEGES ON *.* TO 'kamailio'@'%' IDENTIFIED BY '${MARIADB_KAMAILIO_PASSWORD}' WITH GRANT OPTION;
