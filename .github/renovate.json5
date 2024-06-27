@@ -22,6 +22,8 @@
   "kubernetes": {
     "fileMatch": ["cluster/.+\\.ya?ml$"]
   },
+  "automerge": true,
+  "automergeType": "pr",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
