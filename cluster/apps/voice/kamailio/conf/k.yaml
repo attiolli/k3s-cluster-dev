@@ -369,6 +369,7 @@ data:
     # Manage incoming replies in transaction context
     onreply_route[MANAGE_REPLY] {
             xdbg("incoming reply\n");
+            $fsn = "sLocal";
             return;
     }
     
