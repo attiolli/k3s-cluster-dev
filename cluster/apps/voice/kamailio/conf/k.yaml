@@ -353,12 +353,14 @@ data:
     
     # Manage outgoing branches
     branch_route[MANAGE_BRANCH] {
+            $fsn = "sLocal";
             xdbg("new branch [$T_branch_idx] to $ru\n");
             return;
     }
     
     # Manage incoming replies
     reply_route {
+            $fsn = "sLocal";
             if(!sanity_check("17604", "6")) {
                     xlog("Malformed SIP response from $si:$sp\n");
                     drop;
