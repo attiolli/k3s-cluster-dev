@@ -6,4 +6,4 @@ resources:
   - net-attach.yaml
   - conf/base.yaml
   - conf/k.yaml
-    #- helm-release.yaml
+  - helm-release.yaml
