@@ -57,7 +57,7 @@ data:
     children=8
     # auto_aliases=no
     alias="kam.oatel.net"
-    listen=net1:5060 advertise '${SVC_KAM_PUB_ADDR}':5060
+    listen=net1:5060 advertise '${SVC_KAM_PUB_ADDR}':5060 name "sLocal"
     listen=eth0:5060 advertise '${SVC_KAM_PUB_ADDR}':5060
     listen=0.0.0.0:5062 advertise '${SVC_KAM_PUB_ADDR}':5060
     mhomed=1
