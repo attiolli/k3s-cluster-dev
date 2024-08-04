@@ -8,7 +8,7 @@ spec:
   holdTime: 1m30s
   myASN: 64514
   peerASN: 64514
-  peerAddress: 10.0.40.234
+  peerAddress: 10.0.40.2
   peerPort: 179
   # https://github.com/metallb/metallb/issues/1537
   ebgpMultiHop: false
