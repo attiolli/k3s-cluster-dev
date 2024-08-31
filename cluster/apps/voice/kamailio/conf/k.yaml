@@ -386,12 +386,20 @@ data:
     route[SMM] {
             xlog("L_INFO", "Entering SMM route\n");
             if (is_method("INVITE")) {
-              # Extract the user part from the From header
+              # Extract the current user part and domain part from the From header
               $var(from_user) = $(hdr(From){uri.user});
-              # Replace the user part with a new value
-              $var(new_user) = "testuser";
-              # Reconstruct the From header with the modified user part
-              $hdr(From) = $(hdr(From){s.select,0,sip:}) + $var(new_user) + "@" + $(hdr(From){uri.host});
+              $var(from_host) = $(hdr(From){uri.host});
+           
+              # Set the new user part
+              $var(new_user) = "newuser";
+
+              # Remove the current From header
+              remove_hf("From");
+
+              # Reconstruct and append the modified From header
+              append_hf("From: <sip:" + $var(new_user) + "@" + $var(from_host) + ">\r\n");
+
+              # Log the modified From header
               xlog("L_INFO", "Modified From header to: $hdr(From)\n");
             }
             return;
