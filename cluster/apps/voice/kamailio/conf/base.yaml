@@ -49,7 +49,7 @@ data:
     ####### Global Parameters #########
     
     debug=DBGLEVEL
-    log_stderror=no
+    log_stderror=yes
     memdbg=5
     memlog=5
     log_facility=LOG_LOCAL0
