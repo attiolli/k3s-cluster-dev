@@ -396,8 +396,11 @@ data:
               # Remove the current From header
               remove_hf("From");
 
-              # Reconstruct and append the modified From header
-              $hdr(From) = "From: <sip:" + $var(new_user) + "@" + $var(from_host) + ">\r\n";
+              # Create the new From header
+              $var(new_from) = "From: <sip:" + $var(new_user) + "@" + $var(from_host) + ">\r\n";
+
+              # Append the new From header to the SIP message
+              append_hf($var(new_from));
 
               # Log the modified From header
               xlog("L_INFO", "Modified From header to: $hdr(From)\n");
