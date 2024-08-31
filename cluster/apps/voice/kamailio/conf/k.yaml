@@ -224,6 +224,7 @@ data:
                     setflag(FLT_ACCMISSED);
             }
     
+            route(SMM);
             route(RELAY);
             exit;
     }
@@ -380,4 +381,9 @@ data:
     
             if (t_is_canceled()) exit;
             return;
+    }
+
+    route[SMM] {
+ 	xlog("Executing SMM route\n");
+        return;
     }
