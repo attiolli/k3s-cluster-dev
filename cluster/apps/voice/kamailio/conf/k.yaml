@@ -388,7 +388,7 @@ data:
             if (is_method("INVITE")) {
               # Use subst to modify the user part of the From header
               # This example replaces the user part with "newuser"
-              subst('/^(From:.*<sip:)[^@]+(@.*>.*)$/\1newuser\2/');
+              subst('/^(From:).*[^@]+(@.*>.*)$/\1 <sip:newuser\2/');
               # Log the modified From header
               xlog("L_INFO", "Modified From header to: $hdr(From)\n");
            }
