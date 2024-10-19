@@ -9,6 +9,6 @@ resources:
   - storage
   #- media
   - system-upgrade
-  #- home
+  - home
   - db
   #- voice
