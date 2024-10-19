@@ -7,8 +7,8 @@ resources:
   - cert-manager
   #- system
   - storage
-  - media
+  #- media
   - system-upgrade
   #- home
   - db
-  - voice
+  #- voice
