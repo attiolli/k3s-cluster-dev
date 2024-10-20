@@ -11,4 +11,4 @@ resources:
   - system-upgrade
   - home
   - db
-  #- voice
+  - voice
