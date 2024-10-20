@@ -373,6 +373,7 @@ data:
     onreply_route[MANAGE_REPLY] {
             xdbg("incoming reply\n");
             $fsn = "sLocal";
+            xlog("L_INFO", "To tag is: $tt\n");
             return;
     }
     
@@ -388,8 +389,6 @@ data:
             if (is_method("INVITE")) {
               # Use subst to modify the displayname
               subst('/^(From: ")[^"]*(".*<sip:[^@]+@[^>]+>.*)$/\1NewDisplayName\2/');
-              # Log the modified From header
-              xlog("L_INFO", "Modified From header to: $hdr(From)\n");
            }
             return;
     }
