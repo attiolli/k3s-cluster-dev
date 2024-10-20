@@ -373,6 +373,15 @@ data:
     onreply_route[MANAGE_REPLY] {
             xdbg("incoming reply\n");
             $fsn = "sLocal";
+            if ($var(to_hdr) =~ ".*;tag=([^;]*)") {
+                $var(tag) = $1;
+                # Add "abc" to the tag
+                $var(new_tag) = $var(tag) + "abc";
+                # Replace the old tag with the new one in the To header
+                subst("/(;tag=)[^;]+/\1" + $var(new_tag) + "/g");
+                # Apply the changes to the message
+                msg_apply_changes();
+            }
             xlog("L_INFO", "To tag is: $tt\n");
             return;
     }
