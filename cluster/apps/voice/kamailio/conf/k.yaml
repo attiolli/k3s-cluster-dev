@@ -374,24 +374,27 @@ data:
             xdbg("incoming reply\n");
             $fsn = "sLocal";
             
-            # Extract the To header and apply changes
+        # Extract the To header and apply changes
         if (msg_apply_changes()) {
             # Check if the To header contains a tag parameter
             if ($hdr(To) =~ ";tag=([^;]*)") {
                 # Extract the current tag
                 $var(tag) = $1;
-                
+
                 # Append "abc" to the tag
                 $var(new_tag) = $var(tag) + "abc";
-                
-                # Replace the old tag with the new one in the To header
-                # Use subst to replace the entire tag value
-                subst("/(;tag=)[^;]+/\1" + $var(new_tag) + "/g");
-                
+
+                # Manually construct the subst() regex to replace the old tag with the new one
+                $var(replace_expr) = "/(;tag=)[^;]+/\\1" + $var(new_tag) + "/g";
+
+                # Apply the constructed regex to the To header
+                subst($var(replace_expr));
+
                 # Apply the changes to the message
                 msg_apply_changes();
             }
         }
+
 
             xlog("L_INFO", "To tag is: $tt\n");
             return;
