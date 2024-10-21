@@ -374,21 +374,23 @@ data:
             xdbg("incoming reply\n");
             $fsn = "sLocal";
             
-        # Extract the To header and apply changes
-        # Apply changes to the SIP message
         if (msg_apply_changes()) {
-            # Check if the To header contains a tag parameter
-            if ($hdr(To) =~ ";tag=([^;]*)") {
+            # Get the existing tag directly from the To header
+            $var(captured_tag) = $(hdr(To){uri.param.tag});  # Use this if available
+        
+            # Check if the captured tag exists
+            if ($var(captured_tag) != "") {
                 # Remove the existing To header
                 remove_hf("To");
         
-                # Construct the new To header directly
-                insert_hf("To: <sip:" + $tU + "@" + $td + ">;tag=" + $1 + "abc\r\n");
+                # Insert the new To header with the modified tag
+                insert_hf("To: <sip:" + $tU + "@" + $td + ">;tag=" + $var(captured_tag) + "abc\r\n");
         
                 # Apply changes to the message
                 msg_apply_changes();
             }
         }
+
 
 
 
