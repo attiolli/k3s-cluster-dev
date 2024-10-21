@@ -375,20 +375,20 @@ data:
             $fsn = "sLocal";
             
         # Extract the To header and apply changes
-# Apply changes to the SIP message
-if (msg_apply_changes()) {
-    # Check if the To header contains a tag parameter
-    if ($hdr(To) =~ ";tag=([^;]*)") {
-        # Remove the existing To header
-        remove_hf("To");
-
-        # Construct the new To header directly
-        insert_hf("To: <sip:" + $tU + "@" + $td + ">;tag=" + $1 + "abc\r\n");
-
-        # Apply changes to the message
-        msg_apply_changes();
-    }
-}
+        # Apply changes to the SIP message
+        if (msg_apply_changes()) {
+            # Check if the To header contains a tag parameter
+            if ($hdr(To) =~ ";tag=([^;]*)") {
+                # Remove the existing To header
+                remove_hf("To");
+        
+                # Construct the new To header directly
+                insert_hf("To: <sip:" + $tU + "@" + $td + ">;tag=" + $1 + "abc\r\n");
+        
+                # Apply changes to the message
+                msg_apply_changes();
+            }
+        }
 
 
 
