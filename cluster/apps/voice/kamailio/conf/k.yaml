@@ -375,25 +375,21 @@ data:
             $fsn = "sLocal";
             
         # Extract the To header and apply changes
-        if (msg_apply_changes()) {
-            # Check if the To header contains a tag parameter
-            if ($hdr(To) =~ ";tag=([^;]*)") {
-                # Extract the current tag
-                $var(tag) = $1;
+# Apply changes to the SIP message
+if (msg_apply_changes()) {
+    # Check if the To header contains a tag parameter
+    if ($hdr(To) =~ ";tag=([^;]*)") {
+        # Remove the existing To header
+        remove_hf("To");
 
-                # Append "abc" to the tag
-                $var(new_tag) = $var(tag) + "abc";
+        # Construct the new To header directly
+        insert_hf("To: <sip:" + $tU + "@" + $td + ">;tag=" + $1 + "abc\r\n");
 
-                # Manually construct the subst() regex to replace the old tag with the new one
-                $var(replace_expr) = "/(;tag=)[^;]+/\\1" + $var(new_tag) + "/g";
+        # Apply changes to the message
+        msg_apply_changes();
+    }
+}
 
-                # Apply the constructed regex to the To header
-                subst($var(replace_expr));
-
-                # Apply the changes to the message
-                msg_apply_changes();
-            }
-        }
 
 
             xlog("L_INFO", "To tag is: $tt\n");
