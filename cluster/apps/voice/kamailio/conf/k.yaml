@@ -376,7 +376,7 @@ data:
             
         if (msg_apply_changes()) {
             # Get the existing tag directly from the To header
-            $var(captured_tag) = $(hdr(To){uri.param.tag});  # Use this if available
+            $var(captured_tag) = $tt;  # Use this if available
         
             # Check if the captured tag exists
             if ($var(captured_tag) != "") {
