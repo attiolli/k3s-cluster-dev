@@ -374,22 +374,22 @@ data:
             xdbg("incoming reply\n");
             $fsn = "sLocal";
             
-        if (msg_apply_changes()) {
+        #if (msg_apply_changes()) {
             # Get the existing tag directly from the To header
-            $var(captured_tag) = $tt;  # Use this if available
+            #$var(captured_tag) = $tt;  # Use this if available
         
             # Check if the captured tag exists
-            if ($var(captured_tag) != "") {
+            #if ($var(captured_tag) != "") {
                 # Remove the existing To header
-                remove_hf("To");
+                #remove_hf("To");
         
                 # Insert the new To header with the modified tag
-                insert_hf("To: <sip:" + $tU + "@" + $td + ">;tag=" + $var(captured_tag) + "abc\r\n");
+                #insert_hf("To: <sip:" + $tU + "@" + $td + ">;tag=" + $var(captured_tag) + "abc\r\n");
         
                 # Apply changes to the message
-                msg_apply_changes();
-            }
-        }
+                #msg_apply_changes();
+            #}
+        #}
 
 
 
