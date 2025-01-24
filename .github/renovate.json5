@@ -6,7 +6,7 @@
     "github>attiolli/k3s-cluster-dev//.github/renovate/pr-labels.json"
   ],
   "schedule": [
-    "after 4pm every weekday",
+    "after 11pm every weekday",
     "before 6am every weekday",
     "after 11pm every weekend",
     "before 6am every weekend"
@@ -37,6 +37,33 @@
       automergeType: "branch",
       ignoreTests: true,
       matchUpdateTypes: ["patch"]
-   }
+   },
+    {
+      matchDatasources: ["docker"],
+      automerge: false,
+      automergeType: "branch",
+      ignoreTests: true,
+      matchPackageNames: [
+        "ghcr.io/k8snetworkplumbingwg/multus-cni"
+      ]
+    },
+    {
+      matchDatasources: ["docker"],
+      automerge: false,
+      automergeType: "branch",
+      ignoreTests: true,
+      matchPackageNames: [
+        "ghcr.io/koenkk/zigbee2mqtt"
+      ]
+    },
+    {
+      matchDatasources: ["docker"],
+      automerge: false,
+      automergeType: "branch",
+      ignoreTests: true,
+      matchPackageNames: [
+        "ghcr.io/home-assistant/home-assistant"
+      ]
+    }
   ]
 }
