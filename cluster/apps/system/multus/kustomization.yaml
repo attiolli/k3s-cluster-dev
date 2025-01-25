@@ -5,6 +5,6 @@ resources:
   - network-attachment-definitions.yaml
   - helm-release.yaml
   - rbac.yaml
-  #- config
+  - config
 generatorOptions:
   disableNameSuffixHash: true
