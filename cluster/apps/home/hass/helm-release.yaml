@@ -28,7 +28,21 @@ spec:
     keepHistory: false
   values:
     controllers:
-      hass:        
+      hass:
+        pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |
+              [{
+                "name":"multus-mgmt",
+                "namespace": "system",
+                "ips": ["10.0.40.19/24"]
+              }]
+          tolerations:
+            - key: "master"
+              operator: "Equal"
+              value: "false"
+              effect: "NoSchedule"
+                      
         containers:
           app:
             image:
@@ -57,20 +71,7 @@ spec:
               - "/config/.vscode"
             probes: *probes
 
-        pod:
-          #annotations:
-          #  k8s.v1.cni.cncf.io/networks: |
-          #    [{
-          #      "name":"multus-mgmt",
-          #      "namespace": "system",
-          #      "interface": "eth1",
-          #      "ips": ["10.0.40.19/24"]
-          #    }]
-          tolerations:
-            - key: "master"
-              operator: "Equal"
-              value: "false"
-              effect: "NoSchedule"
+        
 
     service:
       app:
