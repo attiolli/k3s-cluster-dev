@@ -58,14 +58,14 @@ spec:
             probes: *probes
 
         pod:
-          annotations:
-            k8s.v1.cni.cncf.io/networks: |
-              [{
-                "name":"multus-mgmt",
-                "namespace": "system",
-                "interface": "eth1",
-                "ips": ["10.0.40.19/24"]
-              }]
+          #annotations:
+          #  k8s.v1.cni.cncf.io/networks: |
+          #    [{
+          #      "name":"multus-mgmt",
+          #      "namespace": "system",
+          #      "interface": "eth1",
+          #      "ips": ["10.0.40.19/24"]
+          #    }]
           tolerations:
             - key: "master"
               operator: "Equal"
