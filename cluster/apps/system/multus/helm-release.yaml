@@ -50,16 +50,19 @@ spec:
     defaultPodOptions:
       hostNetwork: true
     persistence:
-      cni-net-d:
+      #config:
+      #  type: configMap
+      #  name: multus-configmap
+      #  globalMounts:
+      #    - path: /config/00-multus.conf
+      #      subPath: 00-multus.conf
+      #      readOnly: true
+      etc-cni-net-d:
         type: hostPath
-        hostPath: /var/lib/rancher/k3s/agent/etc/cni/net.d
-        globalMounts:
-          - path: /host/var/lib/rancher/k3s/agent/etc/cni/net.d
-      cni-bin:
+        hostPath: /etc/cni/net.d
+      opt-cni-bin:
         type: hostPath
-        hostPath: /var/lib/rancher/k3s/data/current/bin
-        globalMounts:
-          - path: /host/lib/rancher/k3s/data/current/bin
+        hostPath: /opt/cni/bin
     serviceAccount:
       create: true
       name: *app
