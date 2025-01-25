@@ -96,7 +96,7 @@ spec:
               requests:
                 cpu: 10m
               limits:
-                memory: 15Mi
+                memory: 20Mi
             securityContext:
               capabilities:
                 drop:
