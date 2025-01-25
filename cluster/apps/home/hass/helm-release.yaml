@@ -62,6 +62,7 @@ spec:
             k8s.v1.cni.cncf.io/networks: |
               [{
                 "name":"multus-mgmt",
+                "interface": "eth1",
                 "namespace": "system",
                 "ips": ["10.0.40.19/24"]
               }]
