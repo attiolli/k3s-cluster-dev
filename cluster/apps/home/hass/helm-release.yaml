@@ -63,6 +63,7 @@ spec:
               [{
                 "name":"multus-mgmt",
                 "namespace": "system",
+                "interface": "eth1",
                 "ips": ["10.0.40.19/24"]
               }]
           tolerations:
