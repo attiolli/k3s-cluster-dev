@@ -27,6 +27,8 @@ spec:
     keepHistory: false
   values:
     controllers:
+      annotations:
+          reloader.stakater.com/auto: "true"
       lms:
         containers:
           app:
