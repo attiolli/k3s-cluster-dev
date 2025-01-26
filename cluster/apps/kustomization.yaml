@@ -5,7 +5,7 @@ resources:
   - networking
   - kube-system
   - cert-manager
-  #- system
+  - system
   - storage
   #- media
   - system-upgrade

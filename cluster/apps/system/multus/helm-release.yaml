@@ -67,11 +67,11 @@ spec:
             image: &hardened-cni-plugins-image
               repository: docker.io/rancher/hardened-cni-plugins
               tag: v1.5.1-build20241009   # Current version used in k3s v1.31.2+k3s1
-            env:
-              - name: SKIP_CNI_BINARIES
-                value: "bandwidth,bridge,firewall,host-device,host-local,ipvlan,loopback,portmap,ptp,sbr,vlan,vrf" # macvlan,tuning
-              - name: UPDATE_CNI_BINARIES
-                value: "true"
+            #env:
+            #  - name: SKIP_CNI_BINARIES
+            #    value: "bandwidth,bridge,firewall,host-device,host-local,ipvlan,loopback,portmap,ptp,sbr,vlan,vrf" # macvlan,tuning
+            #  - name: UPDATE_CNI_BINARIES
+            #    value: "true"
             resources:
               requests:
                 cpu: 10m
