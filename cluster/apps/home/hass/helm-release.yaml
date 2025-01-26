@@ -29,6 +29,8 @@ spec:
   values:
     controllers:
       hass:
+        annotations:
+          reloader.stakater.com/auto: "true"
         pod:
           annotations:
             k8s.v1.cni.cncf.io/networks: |
@@ -42,7 +44,7 @@ spec:
               operator: "Equal"
               value: "false"
               effect: "NoSchedule"
-                      
+
         containers:
           app:
             image:
