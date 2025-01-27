@@ -44,7 +44,7 @@ spec:
         pod:
           hostNetwork: true
           hostPID: true
-          terminationGracePeriodSeconds: 10
+          terminationGracePeriodSeconds: 20
         containers:
           multus-daemon:
             image: &multus-cni-image
