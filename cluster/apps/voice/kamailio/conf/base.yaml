@@ -6,9 +6,9 @@ metadata:
 data:
   kamailio-base.cfg: |
     ###!define WITH_DEBUG
-    #!define WITH_MYSQL
-    #!define WITH_AUTH
-    #!define WITH_USRLOCDB
+    ##!define WITH_MYSQL
+    ##!define WITH_AUTH
+    ##!define WITH_USRLOCDB
 
     #!define DMQ_PORT 5062
     #!define DMQ_LISTEN net1:5062
