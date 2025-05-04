@@ -38,12 +38,6 @@ spec:
               repository: ghcr.io/kamailio/kamailio
               tag: 5.8.6-xenial
         pod:
-          annotations:
-            k8s.v1.cni.cncf.io/networks: |
-              [{
-                "name":"multus-kam",
-                "namespace": "system"
-              }]
           tolerations:
             - key: "master"
               operator: "Equal"
